@@ -4,9 +4,16 @@ import NewWindow from "react-new-window";
 import SVG1919 from "./datapoints/borders/SVG1919";
 import SVG1920 from "./datapoints/borders/SVG1920";
 import Border from "./datapoints/borders/Border";
+import Map from "./Map";
+import { borders } from "./data";
 
 function App() {
-  const [current, setCurrent] = useState<number | null>(null);
+  const [currentTopic, setCurrenTopic] = useState<number | undefined>(
+    undefined
+  );
+  const [currentFilter, setCurrentFilter] = useState<number | undefined>(
+    undefined
+  );
 
   const topics = [
     { id: 0, name: "Gebiete & Grenzen" },
@@ -21,17 +28,33 @@ function App() {
             <button
               key={index}
               className="block"
-              onClick={() => setCurrent(topic.id)}
+              onClick={() => setCurrenTopic(topic.id)}
             >
               {topic.name}
             </button>
           ))}
         </nav>
         <main className="col-span-2">main</main>
-        <aside className="col-span-1">legend</aside>
+        <aside className="col-span-1">
+          <div className="h-screen flex cursor-pointer flex-col justify-between">
+            {borders.map((border, index) => {
+              return (
+                <div
+                  className="p-4"
+                  style={{ flexGrow: border.diffRatio }}
+                  onClick={() => setCurrentFilter(border.id)}
+                  key={index}
+                >
+                  {border.year} | {border.title}
+                </div>
+              );
+            })}
+          </div>
+        </aside>
       </div>
       <NewWindow features={{ width: 1920, height: 1080 }}>
-        <Border id={current ?? 0} />
+        <Map />
+        <Border id={currentFilter ?? 0} />
       </NewWindow>
     </>
   );

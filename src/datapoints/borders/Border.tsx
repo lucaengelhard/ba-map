@@ -7,17 +7,23 @@ type borderID = (typeof borders)[number]["id"];
 export default function Border({ id }: { id: borderID }) {
   const [current, setCurrent] = useState(id);
 
-  const [path, setPath] = useState(borders[id].path);
+  const [path, setPath] = useState(
+    borders.find((border) => border.id === id)?.path
+  );
 
   useEffect(() => {
-    morph(1000, 20);
+    const interval = morph(1000, 20);
+    return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   function morph(duration: number, updateInterval: number) {
     if (id === current) return;
 
-    const interpolator = interpolate(borders[current].path, borders[id].path);
+    const currentObj = borders.find((border) => border.id === current);
+    const targetObj = borders.find((border) => border.id === id);
+
+    const interpolator = interpolate(currentObj?.path, targetObj?.path);
 
     const start = Date.now();
     const interval = setInterval(() => {
@@ -27,10 +33,12 @@ export default function Border({ id }: { id: borderID }) {
       } else {
         setCurrent(id);
 
-        setPath(borders[id].path);
+        setPath(targetObj?.path);
         clearInterval(interval);
       }
     }, updateInterval);
+
+    return interval;
   }
 
   return (
