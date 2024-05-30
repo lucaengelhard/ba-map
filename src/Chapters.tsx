@@ -2,7 +2,7 @@ import { chapter, chapterContent, topic } from "./content";
 
 export default function Chapters({ topic }: { topic: topic }) {
   return (
-    <main className="col-span-2">
+    <main className="col-span-2 h-screen overflow-x-hidden hide-scroll">
       <h1>{topic.title}</h1>
       {topic.chapters.map((chapter, index) => (
         <Chapter key={index} index={index} chapter={chapter} />
