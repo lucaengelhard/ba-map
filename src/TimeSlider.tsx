@@ -92,7 +92,18 @@ export default function TimeSlider({
   }
 
   return (
-    <div className="h-screen relative">
+    <div className="h-screen flex">
+      <div
+        className="bg-red-600 h-full w-7 shrink-0  overflow-x-hidden overflow-y-auto hide-scroll"
+        onScroll={onScroll}
+      >
+        <div className="h-full"></div>
+        <div
+          ref={sliderRef}
+          className="bg-black w-full h-7 sticky top-0 bottom-0"
+        ></div>
+        <div className="h-full"></div>
+      </div>
       <div className="h-full flex flex-col justify-between pointer-events-none">
         {calcOptions.map((option, index) => (
           <TimelineElement
@@ -102,17 +113,6 @@ export default function TimeSlider({
             selected={selected === option.id}
           />
         ))}
-      </div>
-      <div
-        className="bg-red-600 absolute top-0 left-0 h-full w-1/4 p-2 overflow-x-hidden overflow-y-auto hide-scroll"
-        onScroll={onScroll}
-      >
-        <div className="h-full"></div>
-        <div
-          ref={sliderRef}
-          className="bg-white w-full h-7 sticky top-0 bottom-0"
-        ></div>
-        <div className="h-full"></div>
       </div>
     </div>
   );
