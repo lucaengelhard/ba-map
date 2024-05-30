@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { borders } from "../../data";
+import { borders } from "./content/data";
 import { interpolate } from "flubber";
 
 type borderID = (typeof borders)[number]["id"];

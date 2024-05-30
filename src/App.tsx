@@ -3,43 +3,33 @@ import NewWindow from "react-new-window";
 
 import SVG1919 from "./datapoints/borders/SVG1919";
 import SVG1920 from "./datapoints/borders/SVG1920";
-import Border from "./datapoints/borders/Border";
+import Border from "./Border";
 import Map from "./Map";
-import { borders } from "./data";
+import { borders } from "./content/data";
 import TimeSlider from "./TimeSlider";
+import { topic, topics } from "./content";
+import Nav from "./Nav";
+import Chapters from "./Chapters";
 
 function App() {
-  const [currentTopic, setCurrenTopic] = useState<number | undefined>(
-    undefined
-  );
+  const [currentTopic, setCurrenTopic] = useState<topic>(topics[0]);
   const [currentFilter, setCurrentFilter] = useState<number | undefined>(
     undefined
   );
-
-  const topics = [
-    { id: 0, name: "Gebiete & Grenzen" },
-    { id: 1, name: "Unterdrückung & Widerstand" },
-  ];
 
   function onSliderChange(selected: number) {
     setCurrentFilter(selected);
   }
 
+  function onChapterChange(topicID: number, chapterIndex: number) {
+    setCurrenTopic(topics.find((topic) => topic.id === topicID));
+  }
+
   return (
     <>
       <div className="grid grid-cols-4 gap-4 px-4">
-        <nav className="col-span-1">
-          {topics.map((topic, index) => (
-            <button
-              key={index}
-              className="block"
-              onClick={() => setCurrenTopic(topic.id)}
-            >
-              {topic.name}
-            </button>
-          ))}
-        </nav>
-        <main className="col-span-2">main</main>
+        <Nav onChange={onChapterChange} />
+        <Chapters topic={currentTopic} />
         <aside className="col-span-1">
           <TimeSlider options={borders} onChange={onSliderChange} />
         </aside>
