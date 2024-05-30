@@ -6,6 +6,7 @@ import SVG1920 from "./datapoints/borders/SVG1920";
 import Border from "./datapoints/borders/Border";
 import Map from "./Map";
 import { borders } from "./data";
+import TimeSlider from "./TimeSlider";
 
 function App() {
   const [currentTopic, setCurrenTopic] = useState<number | undefined>(
@@ -19,6 +20,10 @@ function App() {
     { id: 0, name: "Gebiete & Grenzen" },
     { id: 1, name: "Unterdrückung & Widerstand" },
   ];
+
+  function onSliderChange(selected: number) {
+    setCurrentFilter(selected);
+  }
 
   return (
     <>
@@ -36,20 +41,7 @@ function App() {
         </nav>
         <main className="col-span-2">main</main>
         <aside className="col-span-1">
-          <div className="h-screen flex cursor-pointer flex-col justify-between">
-            {borders.map((border, index) => {
-              return (
-                <div
-                  className="p-4"
-                  style={{ flexGrow: border.diffRatio }}
-                  onClick={() => setCurrentFilter(border.id)}
-                  key={index}
-                >
-                  {border.year} | {border.title}
-                </div>
-              );
-            })}
-          </div>
+          <TimeSlider options={borders} onChange={onSliderChange} />
         </aside>
       </div>
       <NewWindow features={{ width: 1920, height: 1080 }}>
