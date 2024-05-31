@@ -57,7 +57,7 @@ function MapInfo({
   selected: number | number[];
 }) {
   return (
-    <div className="p-4 bg-orange-600 absolute bottom-48 m-4">
+    <div className="p-4 bg-main absolute bottom-48 m-4">
       <h1>{topic.title}</h1>
       <h2>{currentChapter.title}</h2>
     </div>
