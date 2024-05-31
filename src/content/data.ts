@@ -1,9 +1,14 @@
-export const borders: {
+export type mapDataPoint = {
   id: number;
   title: string;
-  year: number;
   path: string;
-}[] = [
+};
+
+export type timelineDataPoint = mapDataPoint & { year: number };
+
+export type interactionData = mapDataPoint | timelineDataPoint;
+
+export const gebieteGrenzenbisHeute: timelineDataPoint[] = [
   {
     id: 0,
     title:

@@ -1,22 +1,19 @@
+import {
+  gebieteGrenzenbisHeute,
+  mapDataPoint,
+  timelineDataPoint,
+} from "./data";
 import image01 from "/images/20240323-ba-newroz-012.jpg";
 
-export type chapterContent = {
-  title?: string;
-  type: "text" | "quote" | "image" | "video";
-  content: string;
-};
-
-export type chapter = { title: string; content: chapterContent[] };
-
-export type topic = { id: number; title: string; chapters: chapter[] };
-
-export const topics: topic[] = [
+const topics: topic[] = [
   {
     id: 0,
     title: "Gebiete & Grenzen",
     chapters: [
       {
-        title: "untertitel",
+        title: "Ende Des Osmanischen Reichs bis heute",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
         content: [
           {
             title: "content",
@@ -30,6 +27,43 @@ export const topics: topic[] = [
           { content: "/videos/C0007.MP4", type: "video" },
         ],
       },
+      {
+        title: "kapitel 2",
+        content: [{ content: "asfdafadfa", type: "text" }],
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "filter",
+      },
     ],
   },
 ];
+
+export type chapterContent = {
+  title?: string;
+  type: "text" | "quote" | "image" | "video";
+  content: string;
+};
+
+export type chapter =
+  | {
+      title: string;
+      content: chapterContent[];
+      interactionData: mapDataPoint[];
+      interactionType: "filter";
+    }
+  | {
+      title: string;
+      content: chapterContent[];
+      interactionData: timelineDataPoint[];
+      interactionType: "timeline";
+    };
+
+export type topic = { id: number; title: string; chapters: chapter[] };
+
+export type topicList = { topics: topic[]; get: (id: number) => topic };
+
+export const topicList: topicList = {
+  topics: topics,
+  get(id) {
+    return topics.find((topic) => topic.id === id) ?? topics[0];
+  },
+};

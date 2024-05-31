@@ -1,4 +1,4 @@
-import { topics } from "./content";
+import { topicList } from "./content";
 
 export default function Nav({
   onChange,
@@ -7,12 +7,19 @@ export default function Nav({
 }) {
   return (
     <nav className="col-span-1">
-      {topics.map((topic, index) => (
-        <div key={index} onClick={() => onChange(topic.id, 0)}>
-          {topic.title}
+      {topicList.topics.map((topic, index) => (
+        <div>
+          <div key={index} onClick={() => onChange(topic.id, 0)}>
+            {topic.title}{" "}
+          </div>
           <div>
             {topic.chapters.map((chapter, cIndex) => (
-              <div key={cIndex} onClick={() => onChange(topic.id, cIndex)}>
+              <div
+                key={cIndex}
+                onClick={() => {
+                  onChange(topic.id, cIndex);
+                }}
+              >
                 {chapter.title}
               </div>
             ))}

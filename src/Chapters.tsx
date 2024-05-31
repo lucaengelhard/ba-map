@@ -1,19 +1,23 @@
 import { chapter, chapterContent, topic } from "./content";
 
-export default function Chapters({ topic }: { topic: topic }) {
+export default function Chapters({
+  topic,
+  chapterIndex,
+}: {
+  topic: topic;
+  chapterIndex: number;
+}) {
   return (
     <main className="col-span-2 h-screen overflow-x-hidden hide-scroll">
       <h1>{topic.title}</h1>
-      {topic.chapters.map((chapter, index) => (
-        <Chapter key={index} index={index} chapter={chapter} />
-      ))}
+      <Chapter chapter={topic.chapters[chapterIndex]} />
     </main>
   );
 }
 
-function Chapter({ chapter, index }: { chapter: chapter; index: number }) {
+function Chapter({ chapter }: { chapter: chapter }) {
   return (
-    <div id={`chapter-${index}`}>
+    <div>
       <h2>{chapter.title}</h2>
       {chapter.content.map((block, bIndex) => (
         <ChapterContent key={bIndex} block={block} />

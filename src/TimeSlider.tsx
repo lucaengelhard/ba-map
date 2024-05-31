@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { timelineDataPoint } from "./content/data";
 
 export default function TimeSlider({
   options,
   onChange,
 }: {
-  options: { id: number; year: number; title: string }[];
+  options: timelineDataPoint[];
   onChange: (selected: number) => void;
 }) {
-  const [sliderVal, setSliderVal] = useState(0);
   const [selected, setSelected] = useState(0);
 
   const timelineElementPos = useRef<Record<number, number>>({});
@@ -133,14 +133,14 @@ function TimelineElement({
   timelineElementPos: React.MutableRefObject<Record<number, number>>;
   selected: boolean;
 }) {
-  const [y, setY] = useState<number>();
+  //const [y, setY] = useState<number>();
   const boxRef = useRef<HTMLDivElement>(null);
 
   const getPosition = () => {
     if (boxRef.current === null) return;
 
     const y = boxRef.current.offsetTop;
-    setY(y);
+    //setY(y);
     timelineElementPos.current = {
       ...timelineElementPos.current,
       [option.id]: y,

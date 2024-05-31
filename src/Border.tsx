@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { borders } from "./content/data";
+import { gebieteGrenzenbisHeute } from "./content/data";
 import { interpolate } from "flubber";
-
-type borderID = (typeof borders)[number]["id"];
 
 export default function Border({ id }: { id: borderID }) {
   const [current, setCurrent] = useState(id);
 
   const [path, setPath] = useState(
-    borders.find((border) => border.id === id)?.path
+    gebieteGrenzenbisHeute.find((border) => border.id === id)?.path
   );
 
   useEffect(() => {
@@ -20,8 +18,10 @@ export default function Border({ id }: { id: borderID }) {
   function morph(duration: number, updateInterval: number) {
     if (id === current) return;
 
-    const currentObj = borders.find((border) => border.id === current);
-    const targetObj = borders.find((border) => border.id === id);
+    const currentObj = gebieteGrenzenbisHeute.find(
+      (border) => border.id === current
+    );
+    const targetObj = gebieteGrenzenbisHeute.find((border) => border.id === id);
 
     const interpolator = interpolate(currentObj?.path, targetObj?.path);
 
