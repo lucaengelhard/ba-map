@@ -37,7 +37,7 @@ export default function Filter({
   );
 }
 
-function FilterElement({
+export function FilterElement({
   option,
   onFilterClick,
   index,

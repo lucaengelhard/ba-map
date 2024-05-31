@@ -3,6 +3,7 @@ import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
 import { interpolate } from "flubber";
 import { chapter, topic } from "./content";
+import Filter from "./Filter";
 
 export default function Map({
   selected,
@@ -57,9 +58,42 @@ function MapInfo({
   selected: number | number[];
 }) {
   return (
-    <div className="p-4 bg-main absolute bottom-48 m-4">
-      <h1>{topic.title}</h1>
-      <h2>{currentChapter.title}</h2>
+    <div className="p-4  absolute top-2/3 m-4">
+      <h1 className="text-[2rem] font-bold text-main">{topic.title}</h1>
+      <h2 className="text-main ">{currentChapter.title}</h2>
+      {typeof selected !== "number" ? (
+        currentChapter.interactionData.map((el, index) => (
+          <MapInfoElement
+            key={index}
+            datapoint={el}
+            selected={selected.includes(el.id)}
+          />
+        ))
+      ) : (
+        <div></div>
+      )}
+    </div>
+  );
+}
+
+function MapInfoElement({
+  datapoint,
+  selected,
+}: {
+  selected: boolean;
+  datapoint: mapDataPoint;
+}) {
+  return (
+    <div
+      style={{
+        opacity: selected ? 1 : 0.5,
+        maxWidth: "20vw",
+        whiteSpace: "nowrap",
+        overflow: "clip",
+        textOverflow: "ellipsis",
+      }}
+    >
+      {datapoint.title}
     </div>
   );
 }
