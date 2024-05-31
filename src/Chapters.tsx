@@ -31,7 +31,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
     return (
       <div>
         <h3>{block.title}</h3>
-        <p>{block.content}</p>
+        <p className="font-sans">{block.content}</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
       <div>
         <figure>
           {" "}
-          <img src={block.content} alt="" />
+          <img src={block.content} alt={block.title} />
           <figcaption>{block.title}</figcaption>
         </figure>
       </div>
@@ -61,7 +61,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
       <div>
         <figure>
           {" "}
-          <video src={block.content} alt="" />
+          <video src={block.content} />
           <figcaption>{block.title}</figcaption>
         </figure>
       </div>

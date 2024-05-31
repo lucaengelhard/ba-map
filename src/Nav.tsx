@@ -8,8 +8,11 @@ export default function Nav({
   return (
     <nav className="col-span-1">
       {topicList.topics.map((topic, index) => (
-        <div>
-          <div key={index} onClick={() => onChange(topic.id, 0)}>
+        <div key={index}>
+          <div
+            className="font-serif font-bold"
+            onClick={() => onChange(topic.id, 0)}
+          >
             {topic.title}{" "}
           </div>
           <div>

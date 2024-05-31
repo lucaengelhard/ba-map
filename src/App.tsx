@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import NewWindow from "react-new-window";
 
-import Border from "./Border";
 import Map from "./Map";
 
 import TimeSlider from "./TimeSlider";
@@ -54,10 +53,10 @@ function App() {
         </aside>
       </div>
       <NewWindow features={{ width: 1920, height: 1080 }}>
-        <Map />
-
-        <Border
-          options={currentChapter.interactionData}
+        <Map
+          base
+          currentChapter={currentChapter}
+          topic={currentTopic}
           selected={currentFilter}
         />
       </NewWindow>

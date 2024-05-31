@@ -10,6 +10,8 @@ export default function TimeSlider({
 }) {
   const [selected, setSelected] = useState(0);
 
+  useEffect(() => onChange(selected), [onChange, selected]);
+
   const timelineElementPos = useRef<Record<number, number>>({});
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,6 @@ export default function TimeSlider({
 
   function handleChange(selectedChange: number) {
     setSelected(selectedChange);
-    onChange(selectedChange);
   }
 
   function onScroll() {
@@ -90,6 +91,13 @@ export default function TimeSlider({
 
     handleChange(sliderSelected);
   }
+
+  //Slider at the top when mounting
+  useEffect(() => {
+    if (sliderRef.current === null) return;
+
+    sliderRef.current.scrollIntoView();
+  }, []);
 
   return (
     <div className="h-screen flex">
