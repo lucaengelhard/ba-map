@@ -55,7 +55,11 @@ function App() {
       </div>
       <NewWindow features={{ width: 1920, height: 1080 }}>
         <Map />
-        <Border id={currentFilter} />
+
+        <Border
+          options={currentChapter.interactionData}
+          selected={currentFilter}
+        />
       </NewWindow>
     </>
   );
