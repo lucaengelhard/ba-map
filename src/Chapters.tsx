@@ -1,3 +1,4 @@
+import Sonne from "./assets/icons/Sonne";
 import { chapter, chapterContent, topic } from "./content";
 
 export default function Chapters({
@@ -8,8 +9,10 @@ export default function Chapters({
   chapterIndex: number;
 }) {
   return (
-    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll">
-      <h1>{topic.title}</h1>
+    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4 relative">
+      <h1 className="text-main text-xl sticky top-0 bg-white pt-4 pb-1 font-bold">
+        {topic.title}
+      </h1>
       <Chapter chapter={topic.chapters[chapterIndex]} />
     </main>
   );
@@ -29,8 +32,8 @@ function Chapter({ chapter }: { chapter: chapter }) {
 function ChapterContent({ block }: { block: chapterContent }) {
   if (block.type === "text") {
     return (
-      <div>
-        <h3>{block.title}</h3>
+      <div className="py-4">
+        <h3 className="italic">{block.title}</h3>
         <p className="font-sans">{block.content}</p>
       </div>
     );
@@ -38,15 +41,17 @@ function ChapterContent({ block }: { block: chapterContent }) {
 
   if (block.type === "quote") {
     return (
-      <div>
-        <blockquote>{block.content}</blockquote>
+      <div className="flex gap-4 items-center px-14 py-4">
+        {" "}
+        <Sonne fill="#E74322" className="w-14" />
+        <blockquote className="text-main italic">{block.content}</blockquote>
       </div>
     );
   }
 
   if (block.type === "image") {
     return (
-      <div>
+      <div className="py-4">
         <figure>
           {" "}
           <img src={block.content} alt={block.title} />
@@ -58,7 +63,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
 
   if (block.type === "video") {
     return (
-      <div>
+      <div className="py-4">
         <figure>
           {" "}
           <video src={block.content} />

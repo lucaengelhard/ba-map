@@ -8,6 +8,7 @@ import { topicList } from "./content";
 import Nav from "./Nav";
 import Chapters from "./Chapters";
 import Filter from "./Filter";
+import BGGrid from "./BGGrid";
 
 function App() {
   const [currentTopic, setCurrenTopic] = useState(topicList.get(0));
@@ -34,7 +35,11 @@ function App() {
   return (
     <>
       <div className="grid grid-cols-12 gap-4 px-4">
-        <Nav onChange={onChapterChange} />
+        <Nav
+          onChange={onChapterChange}
+          currentChapterIndex={currentChapterIndex}
+          currentTopic={currentTopic}
+        />
         <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
         <aside className="col-span-4">
           {currentChapter.interactionType === "timeline" ? (
@@ -60,6 +65,7 @@ function App() {
           selected={currentFilter}
         />
       </NewWindow>
+      <BGGrid width={80} />
     </>
   );
 }
