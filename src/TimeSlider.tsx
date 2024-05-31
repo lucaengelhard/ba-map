@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { timelineDataPoint } from "./content/data";
+import Sonne from "./assets/icons/Sonne";
 
 export default function TimeSlider({
   options,
@@ -72,7 +73,9 @@ export default function TimeSlider({
   function onScroll() {
     if (sliderRef.current === null) return;
 
-    const slidertop = sliderRef.current.getBoundingClientRect().y;
+    const BoundingBox = sliderRef.current.getBoundingClientRect();
+
+    const slidertop = BoundingBox.y;
 
     const elements = timelineElementPos.current;
 
@@ -82,7 +85,7 @@ export default function TimeSlider({
     for (const id in elements) {
       if (Object.prototype.hasOwnProperty.call(elements, id)) {
         const pos = elements[id];
-        if (pos <= slidertop && pos > maxPos) {
+        if (pos <= slidertop + BoundingBox.height / 2 && pos > maxPos) {
           maxPos = pos;
           sliderSelected = parseInt(id);
         }
@@ -102,17 +105,18 @@ export default function TimeSlider({
   return (
     <div className="h-screen flex">
       <div
-        className="bg-red-600 h-full w-7 shrink-0  overflow-x-hidden overflow-y-auto hide-scroll"
+        className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
         onScroll={onScroll}
       >
+        {/**Slider */}
         <div className="h-full"></div>
-        <div
-          ref={sliderRef}
-          className="bg-black w-full h-7 sticky top-0 bottom-0"
-        ></div>
+        <div ref={sliderRef} className="w-full sticky top-0 bottom-0 pt-4 pb-4">
+          <Sonne fill="#E74322" simplified />
+        </div>
         <div className="h-full"></div>
+        {/**Slider */}
       </div>
-      <div className="h-full flex flex-col justify-between pointer-events-none">
+      <div className="h-full flex  flex-col justify-between pointer-events-none pb-7 pt-4">
         {calcOptions.map((option, index) => (
           <TimelineElement
             key={index}
@@ -141,14 +145,13 @@ function TimelineElement({
   timelineElementPos: React.MutableRefObject<Record<number, number>>;
   selected: boolean;
 }) {
-  //const [y, setY] = useState<number>();
   const boxRef = useRef<HTMLDivElement>(null);
 
   const getPosition = () => {
     if (boxRef.current === null) return;
 
     const y = boxRef.current.offsetTop;
-    //setY(y);
+
     timelineElementPos.current = {
       ...timelineElementPos.current,
       [option.id]: y,

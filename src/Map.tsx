@@ -3,7 +3,6 @@ import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
 import { interpolate } from "flubber";
 import { chapter, topic } from "./content";
-import Filter from "./Filter";
 
 export default function Map({
   selected,
@@ -70,7 +69,20 @@ function MapInfo({
           />
         ))
       ) : (
-        <div></div>
+        <div
+          style={{
+            maxWidth: "20vw",
+            whiteSpace: "nowrap",
+            overflow: "clip",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {
+            currentChapter.interactionData.find(
+              (point) => point.id === selected
+            )?.title
+          }
+        </div>
       )}
     </div>
   );

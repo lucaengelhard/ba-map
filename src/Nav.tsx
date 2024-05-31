@@ -6,7 +6,7 @@ export default function Nav({
   onChange: (topicID: number, chapterIndex: number) => void;
 }) {
   return (
-    <nav className="col-span-1">
+    <nav className="col-span-2">
       {topicList.topics.map((topic, index) => (
         <div key={index}>
           <div

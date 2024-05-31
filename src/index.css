@@ -248,3 +248,15 @@
       format("woff");
   }
 }
+
+.line-background {
+  height: 100%;
+  width: 200px; /* adjust as needed */
+  background: linear-gradient(
+    to right,
+    transparent 49%,
+    black 49%,
+    black 51%,
+    transparent 51%
+  );
+}

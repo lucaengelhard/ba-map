@@ -8,7 +8,7 @@ export default function Chapters({
   chapterIndex: number;
 }) {
   return (
-    <main className="col-span-2 h-screen overflow-x-hidden hide-scroll">
+    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll">
       <h1>{topic.title}</h1>
       <Chapter chapter={topic.chapters[chapterIndex]} />
     </main>
