@@ -25,7 +25,9 @@ export default function Nav({
             {topic.chapters.map((chapter, cIndex) => (
               <div
                 className={`pl-4 pb-1 ${
-                  cIndex === currentChapterIndex ? "underline" : ""
+                  currentTopic.id === topic.id && cIndex === currentChapterIndex
+                    ? "underline"
+                    : ""
                 }`}
                 key={cIndex}
                 onClick={() => {
