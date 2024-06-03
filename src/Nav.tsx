@@ -1,3 +1,4 @@
+import BGGrid from "./BGGrid";
 import { topic, topicList } from "./content";
 
 export default function Nav({
@@ -10,13 +11,11 @@ export default function Nav({
   currentChapterIndex: number;
 }) {
   return (
-    <nav className="col-span-2 p-4">
+    <nav className="col-span-2 p-4 relative">
       {topicList.topics.map((topic, index) => (
         <div key={index} className="mb-4">
           <div
-            className={`w-[max-content] max-w-full font-serif font-bold text-xl px-2 mb-1 pt-1 ${
-              currentTopic.id === topic.id && "bg-main text-white"
-            }`}
+            className={`font-serif font-bold text-xl mb-1 pt-1`}
             onClick={() => onChange(topic.id, 0)}
           >
             {topic.title}{" "}
@@ -24,7 +23,7 @@ export default function Nav({
           <div>
             {topic.chapters.map((chapter, cIndex) => (
               <div
-                className={`pl-6 pb-1 ${
+                className={`pb-1 ${
                   currentTopic.id === topic.id && cIndex === currentChapterIndex
                     ? "underline"
                     : ""
@@ -40,6 +39,7 @@ export default function Nav({
           </div>
         </div>
       ))}
+      <BGGrid width={50} />
     </nav>
   );
 }

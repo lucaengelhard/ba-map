@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 pl-4 text-black">
+      <div className="grid grid-cols-12 gap-4 text-black w-screen h-screen overflow-hidden">
         <Nav
           onChange={onChapterChange}
           currentChapterIndex={currentChapterIndex}
@@ -64,8 +64,9 @@ function App() {
           topic={currentTopic}
           selected={currentFilter}
         />
-      </NewWindow>
-      <BGGrid width={80} />
+      </NewWindow>{" "}
+      {/**
+      <BGGrid width={80} /> */}
     </>
   );
 }
