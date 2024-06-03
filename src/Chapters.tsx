@@ -32,8 +32,8 @@ function Chapter({ chapter }: { chapter: chapter }) {
 function ChapterContent({ block }: { block: chapterContent }) {
   if (block.type === "text") {
     return (
-      <div className="py-4">
-        <h3 className="italic">{block.title}</h3>
+      <div className={block.title !== undefined ? "py-4" : "pb-4"}>
+        {block.title !== undefined && <h3 className="italic">{block.title}</h3>}
         <p className="font-sans">{block.content}</p>
       </div>
     );
@@ -41,10 +41,15 @@ function ChapterContent({ block }: { block: chapterContent }) {
 
   if (block.type === "quote") {
     return (
-      <div className="flex gap-4 items-center px-14 py-4">
-        {" "}
-        <Sonne fill="#E74322" className="w-14" />
-        <blockquote className="text-main italic">{block.content}</blockquote>
+      <div className="py-4">
+        <div className="flex gap-4 items-center px-14 ">
+          {" "}
+          <Sonne fill="#E74322" className="w-14" />
+          <blockquote className="text-main italic">{block.content}</blockquote>
+        </div>
+        {block.title !== undefined && (
+          <div className="text-right text-main">{block.title}</div>
+        )}
       </div>
     );
   }
@@ -55,7 +60,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
         <figure>
           {" "}
           <img src={block.content} alt={block.title} />
-          <figcaption>{block.title}</figcaption>
+          <figcaption className="text-main mt-2">{block.title}</figcaption>
         </figure>
       </div>
     );
