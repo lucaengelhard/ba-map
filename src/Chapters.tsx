@@ -44,11 +44,15 @@ function ChapterContent({ block }: { block: chapterContent }) {
       <div className="py-4">
         <div className="flex gap-4 items-center px-14 ">
           {" "}
-          <Sonne fill="#E74322" className="w-14" />
-          <blockquote className="text-main italic">{block.content}</blockquote>
+          <Sonne fill="#E74322" className="w-[10%]" />
+          <blockquote className="text-main italic w-[90%]">
+            {block.content}
+          </blockquote>
         </div>
         {block.title !== undefined && (
-          <div className="text-right text-main">{block.title}</div>
+          <div className="text-main flex justify-end mt-2">
+            <div className="text-right w-1/2">{block.title}</div>
+          </div>
         )}
       </div>
     );
