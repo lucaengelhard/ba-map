@@ -72,9 +72,6 @@ function MapInfo({
         <div
           style={{
             maxWidth: "20vw",
-            whiteSpace: "nowrap",
-            overflow: "clip",
-            textOverflow: "ellipsis",
           }}
         >
           {

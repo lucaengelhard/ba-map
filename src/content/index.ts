@@ -230,7 +230,7 @@ const topics: topic[] = [
         ],
       },
       {
-        title: "Erser Weltkrieg bis heute",
+        title: "Erster Weltkrieg bis heute",
         interactionData: gebieteGrenzenbisHeute,
         interactionType: "timeline",
         content: [
@@ -401,7 +401,6 @@ const topics: topic[] = [
             type: "text",
             content: `Seit September 2022 gibt es wieder Massenproteste im Iran. Ausgelöst wurden sie durch den Mord der kurdischen Iranerin Jina Mahsa Amini durch iranische Polizisten. Der kurdische Ausspruch “Jin, Jiyan, Azadî” (Frauen, Leben, Freiheit) wurde zu einem der Hauptparolen der Proteste und erlangte so neue weltweite Bekanntheit, nachdem er ursprünglich ein Slogan der PKK war und auch im Kontext mit Rojava oft verwendet wird`,
           },
-          { content: "/videos/C0007.MP4", type: "video" },
         ],
         interactionData: gebieteGrenzenbisHeute,
         interactionType: "filter",

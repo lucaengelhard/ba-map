@@ -20,7 +20,7 @@ export default function Chapters({
 
 function Chapter({ chapter }: { chapter: chapter }) {
   return (
-    <div>
+    <div className="text-xl">
       <h2>{chapter.title}</h2>
       {chapter.content.map((block, bIndex) => (
         <ChapterContent key={bIndex} block={block} />
