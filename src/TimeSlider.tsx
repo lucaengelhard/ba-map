@@ -112,7 +112,7 @@ export default function TimeSlider({
         <div className="h-full"></div>
         <div
           ref={sliderRef}
-          className="w-full sticky top-0 bottom-0 pt-4 pb-4 bg-white"
+          className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
         >
           <Sonne fill="#E74322" />
         </div>
