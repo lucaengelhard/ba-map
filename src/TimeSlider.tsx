@@ -103,7 +103,7 @@ export default function TimeSlider({
   }, []);
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex gap-2">
       <div
         className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
         onScroll={onScroll}
@@ -119,7 +119,7 @@ export default function TimeSlider({
         <div className="h-full"></div>
         {/**Slider */}
       </div>
-      <div className="h-full flex  flex-col justify-between pointer-events-none pb-7 pt-4">
+      <div className="h-full flex flex-col justify-between pointer-events-none pb-7 pt-4">
         {calcOptions.map((option, index) => (
           <TimelineElement
             key={index}
@@ -172,11 +172,10 @@ function TimelineElement({
   return (
     <div
       ref={boxRef}
-      className="p-4 text-sm flex gap-4"
+      className={`p-4 text-sm flex gap-4 transition-colors duration-700 ${selected ? "bg-main text-white" : "bg-transparent"}`}
       key={option.id}
       style={{
         flexGrow: option.diffRatio,
-        textDecoration: selected ? "underline" : "none",
       }}
     >
       <div>{option.year}</div>

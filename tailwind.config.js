@@ -6,13 +6,15 @@ export default {
       serif: ["Vollkorn"],
       sans: ["Diatype"],
     },
-    colors: {
-      main: "#E74322",
-      black: "#1A1A1B",
-      grey: "#D7D0CF",
-      white: "#FFFFFF",
+
+    extend: {
+      colors: {
+        main: "#E74322",
+        black: "#1A1A1B",
+        grey: "#D7D0CF",
+        white: "#FFFFFF",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };

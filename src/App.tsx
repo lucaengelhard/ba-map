@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 px-4">
+      <div className="grid grid-cols-12 gap-4 pl-4">
         <Nav
           onChange={onChapterChange}
           currentChapterIndex={currentChapterIndex}
