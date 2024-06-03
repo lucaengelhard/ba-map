@@ -6,6 +6,7 @@
   html {
     font-family: "Vollkorn";
     box-sizing: border-box;
+    user-select: none;
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */

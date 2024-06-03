@@ -11,12 +11,48 @@ const topics: topic[] = [
     title: "Gebiete & Grenzen",
     chapters: [
       {
-        title: "Ende Des Osmanischen Reichs bis heute",
+        title: "Ursprünge",
+        content: [
+          { title: "Fruchtbarer Halbmond", content: "", type: "text" },
+          { title: "Ursprungsgebiete", content: "", type: "text" },
+          { title: "Frühe Zusammenschlüsse", content: "", type: "text" },
+        ],
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+      },
+      {
+        title: "Beherrscht",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [
+          { title: "Alexander der Große", content: "", type: "text" },
+          { title: "Selukiden", content: "", type: "text" },
+          { title: "Partherreich", content: "", type: "text" },
+          { title: "Römer", content: "", type: "text" },
+          { title: "Islamisches Reich", content: "", type: "text" },
+        ],
+      },
+      {
+        title: "Fürstentümer",
         interactionData: gebieteGrenzenbisHeute,
         interactionType: "timeline",
         content: [
           {
-            title: "content",
+            title: "Dynastien im Islamischen Reich",
+            content: "",
+            type: "text",
+          },
+          { title: "Seldschuken", content: "", type: "text" },
+          { title: "Osmansiches Reich", content: "", type: "text" },
+        ],
+      },
+      {
+        title: "Ende Des Osmanischen Reichs",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [
+          {
+            title: "Griechische Expansion",
             type: "text",
             content: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
 
@@ -29,13 +65,69 @@ const topics: topic[] = [
             type: "quote",
           },
           { content: "/videos/C0007.MP4", type: "video" },
+          { title: "Attatürks Feldzug", content: "", type: "text" },
+          { title: "Sevres & Lausanne", content: "", type: "text" },
         ],
       },
       {
-        title: "kapitel 2",
+        title: "Heute",
         content: [{ content: "asfdafadfa", type: "text" }],
         interactionData: gebieteGrenzenbisHeute,
         interactionType: "filter",
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: "Demografie",
+    chapters: [
+      {
+        title: "Lebensstandard",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+      {
+        title: "Bevölkerungsanteil",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+      {
+        title: "Sprache",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+      {
+        title: "Religion",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Unterdrückung & Widerstand",
+    chapters: [
+      {
+        title: "Verbote",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+      {
+        title: "Genozide",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
+      },
+      {
+        title: "Widerstand",
+        interactionData: gebieteGrenzenbisHeute,
+        interactionType: "timeline",
+        content: [{ title: "Überschrift", content: "", type: "text" }],
       },
     ],
   },

@@ -16,6 +16,8 @@ export default function BGGrid({ width }: { width: number }) {
   }
 
   return (
-    <div className="flex flex-wrap fixed top-0 left-0 -z-40">{squares}</div>
+    <div className="flex opacity-35 flex-wrap fixed top-0 left-0 -z-40">
+      {squares}
+    </div>
   );
 }
