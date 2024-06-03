@@ -14,8 +14,8 @@ export default function Nav({
       {topicList.topics.map((topic, index) => (
         <div key={index} className="mb-4">
           <div
-            className={`font-serif font-bold text-xl pb-1 ${
-              currentTopic.id === topic.id ? "text-main" : "text-black"
+            className={`w-[max-content] max-w-full font-serif font-bold text-xl px-2 mb-1 pt-1 ${
+              currentTopic.id === topic.id && "bg-main text-white"
             }`}
             onClick={() => onChange(topic.id, 0)}
           >
@@ -24,7 +24,7 @@ export default function Nav({
           <div>
             {topic.chapters.map((chapter, cIndex) => (
               <div
-                className={`pl-4 pb-1 ${
+                className={`pl-6 pb-1 ${
                   currentTopic.id === topic.id && cIndex === currentChapterIndex
                     ? "underline"
                     : ""
