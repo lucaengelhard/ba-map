@@ -178,7 +178,7 @@ function TimelineElement({
         flexGrow: option.diffRatio,
       }}
     >
-      <div>{option.year}</div>
+      <div>{option.id}</div>
       <div>{option.title}</div>
     </div>
   );

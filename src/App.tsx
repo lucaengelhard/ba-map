@@ -8,7 +8,7 @@ import { topicList } from "./content";
 import Nav from "./Nav";
 import Chapters from "./Chapters";
 import Filter from "./Filter";
-import BGGrid from "./BGGrid";
+//import BGGrid from "./BGGrid";
 
 function App() {
   const [currentTopic, setCurrenTopic] = useState(topicList.get(0));
