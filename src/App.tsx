@@ -44,7 +44,7 @@ function App() {
             currentTopic={currentTopic}
           />
           <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
-          <aside className="col-span-3">
+          <aside className="col-span-4">
             {currentChapter.interactionType === "timeline" ? (
               <TimeSlider
                 options={currentChapter.interactionData}

@@ -13,7 +13,7 @@ export default function Chapters({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll relative">
+    <main className="col-span-5 h-screen overflow-x-hidden hide-scroll relative">
       <h1
         className="text-main-600 text-3xl sticky top-0 bg-white  font-bold border border-main-300 flex items-center p-2"
         style={{

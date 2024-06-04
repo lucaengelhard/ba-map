@@ -17,8 +17,6 @@ export default function TimeSlider({
 
   useEffect(() => onChange(selected), [onChange, selected]);
 
-  const timelineElementPos = useRef<Record<number, number>>({});
-
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const timespan = useMemo(() => {
@@ -55,34 +53,33 @@ export default function TimeSlider({
     return { span: maxYear - minYear, minYear, maxYear };
   }, [options]);
 
-  const calcOptions = useMemo(
-    () =>
-      options.map((option, index) => {
-        const diff =
-          index === options.length - 1
-            ? 0
-            : options[index + 1].year - option.year;
+  const calcOptions = useMemo(() => {
+    let topHeight = gridSize;
 
-        const diffRatio = diff / timespan.span;
+    return options.map((option, index) => {
+      const diff =
+        index === options.length - 1
+          ? 0
+          : options[index + 1].year - option.year;
 
-        let span = Math.floor(diffRatio * rows) - 1;
+      const diffRatio = diff / timespan.span;
 
-        if (span <= 1) {
-          span = 2;
-        }
+      let span = Math.floor(diffRatio * (rows - 4)) - 1;
 
-        if (span > 3) {
-          span = 3;
-        }
+      if (span <= 1) {
+        span = 2;
+      }
 
-        return { ...option, diff, diffRatio, span };
-      }),
-    [options, rows, timespan.span]
-  );
+      if (span > 3) {
+        span = 3;
+      }
 
-  function handleChange(selectedChange: number) {
-    setSelected(selectedChange);
-  }
+      const elTop = topHeight;
+      topHeight = topHeight + span * gridSize;
+
+      return { ...option, diff, diffRatio, span, elTop };
+    });
+  }, [gridSize, options, rows, timespan.span]);
 
   function onScroll() {
     if (sliderRef.current === null) return;
@@ -91,22 +88,17 @@ export default function TimeSlider({
 
     const slidertop = BoundingBox.y;
 
-    const elements = timelineElementPos.current;
+    const filtered = calcOptions.filter((opt) => opt.elTop < slidertop);
 
-    let maxPos = 0;
-    let sliderSelected = 0;
+    if (filtered.length > 0) {
+      const selected = filtered.reduce((prev, current) => {
+        return prev.elTop > current.elTop ? prev : current;
+      });
 
-    for (const id in elements) {
-      if (Object.prototype.hasOwnProperty.call(elements, id)) {
-        const pos = elements[id];
-        if (pos <= slidertop + BoundingBox.height / 2 && pos > maxPos) {
-          maxPos = pos;
-          sliderSelected = parseInt(id);
-        }
-      }
+      setSelected(selected.id);
+    } else {
+      setSelected(0);
     }
-
-    handleChange(sliderSelected);
   }
 
   //Slider at the top when mounting
@@ -117,17 +109,17 @@ export default function TimeSlider({
   }, []);
 
   function onGridChange({ rows }: { cols: number; rows: number }) {
-    setRows(rows - 4);
+    setRows(rows);
   }
 
   return (
     <>
       <SideBarGrid cellWidth={gridSize} onGridChange={onGridChange}>
-        <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+        <div style={{ gridColumn: "4 / -2", gridRow: "span 1" }}></div>
         {calcOptions.map((option, index) => (
           <SideBarGridElement
             key={index}
-            gridColumn="2 / -1"
+            gridColumn="4 / -1"
             className="flex gap-4 items-start"
             selected={option.id === selected}
             span={option.span}
@@ -137,92 +129,21 @@ export default function TimeSlider({
             <div>{option.title}</div>
           </SideBarGridElement>
         ))}
-      </SideBarGrid>
-      {/**
-    <div className="h-screen flex gap-2 border border-main-300">
-      <div
-        className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
-        onScroll={onScroll}
-      >
-       
-        <div className="h-full"></div>
         <div
-          ref={sliderRef}
-          className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
+          className="overflow-x-hidden overflow-y-auto hide-scroll max-h-screen px-2"
+          onScroll={onScroll}
+          style={{ gridColumn: "1 / 4", gridRow: `1 / span ${rows}` }}
         >
-          <Sonne fill="#E74322" />
+          <div className="h-full"></div>
+          <div
+            ref={sliderRef}
+            className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
+          >
+            <Sonne fill="#E74322" />
+          </div>
+          <div className="h-full"></div>
         </div>
-        <div className="h-full"></div>
-      
-      </div>
-      <div className="h-full flex flex-col justify-between pointer-events-none pb-7 pt-4">
-        {calcOptions.map((option, index) => (
-          <TimelineElement
-            key={index}
-            option={option}
-            timelineElementPos={timelineElementPos}
-            selected={selected === option.id}
-          />
-        ))}
-      </div>
-    </div> */}
+      </SideBarGrid>
     </>
-  );
-}
-
-function TimelineElement({
-  option,
-  timelineElementPos,
-  selected,
-}: {
-  option: {
-    diff: number;
-    diffRatio: number;
-    id: number;
-    year: number;
-    title: string;
-  };
-  timelineElementPos: React.MutableRefObject<Record<number, number>>;
-  selected: boolean;
-}) {
-  const boxRef = useRef<HTMLDivElement>(null);
-
-  const getPosition = () => {
-    if (boxRef.current === null) return;
-
-    const y = boxRef.current.offsetTop;
-
-    timelineElementPos.current = {
-      ...timelineElementPos.current,
-      [option.id]: y,
-    };
-  };
-
-  useEffect(() => {
-    getPosition();
-  });
-
-  useEffect(() => {
-    window.addEventListener("resize", getPosition);
-  });
-
-  return (
-    <div
-      ref={boxRef}
-      key={option.id}
-      style={{
-        flexGrow: option.diffRatio,
-      }}
-    >
-      {" "}
-      <SideBarGridElement
-        className="w-full h-full text-sm flex gap-4 items-start"
-        selected={selected}
-        span={1}
-      >
-        <div>{option.year}</div>
-        <div>{option.title}</div>
-      </SideBarGridElement>
-    </div>
   );
 }
