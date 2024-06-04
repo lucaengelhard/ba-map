@@ -25,7 +25,7 @@ export default function Filter({
 
   return (
     <div className="h-screen">
-      <SideBarGrid numCols={10}>
+      <SideBarGrid cellWidth={40}>
         {options.map((option, index) => (
           <>
             <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>

@@ -13,7 +13,7 @@ export default function Nav({
 }) {
   return (
     <nav className="col-span-3">
-      <SideBarGrid numCols={10}>
+      <SideBarGrid cellWidth={40}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic, tIndex) => (
           <>
@@ -50,10 +50,12 @@ export default function Nav({
 
 export function SideBarGrid({
   children,
-  numCols,
+  cellWidth,
+  rows,
 }: {
-  numCols: number;
+  cellWidth: number;
   children: ReactNode;
+  rows?: number;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
@@ -76,13 +78,14 @@ export function SideBarGrid({
     }
   }, []);
 
-  const cellWidth = useMemo(() => {
-    return Math.floor(containerSize.width / numCols);
-  }, [containerSize.width, numCols]);
+  const numCols = useMemo(() => {
+    return Math.floor(containerSize.width / cellWidth);
+  }, [cellWidth, containerSize.width]);
 
   const numRows = useMemo(() => {
+    if (rows !== undefined) return rows;
     return Math.floor(containerSize.height / cellWidth) + 1;
-  }, [cellWidth, containerSize.height]);
+  }, [cellWidth, containerSize.height, rows]);
 
   const squares = useMemo(() => {
     const squares = [];
@@ -104,10 +107,11 @@ export function SideBarGrid({
   return (
     <div
       ref={container}
-      className="grid h-screen relative"
+      className="grid relative"
       style={{
         gridTemplateColumns: `repeat(${numCols}, ${cellWidth}px)`,
         gridTemplateRows: `repeat(${numRows}, ${cellWidth}px)`,
+        height: rows ? `${rows * cellWidth}px` : "100vh",
       }}
     >
       {children}

@@ -1,3 +1,4 @@
+import { SideBarGrid } from "./Nav";
 import Sonne from "./assets/icons/Sonne";
 import { chapter, chapterContent, topic } from "./content";
 
@@ -10,9 +11,17 @@ export default function Chapters({
 }) {
   return (
     <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4 relative">
-      <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-4 pb-1 font-bold">
-        {topic.title}
-      </h1>
+      <div className="sticky top-0 bg-white overflow-hidden mb-4">
+        <SideBarGrid rows={4} cellWidth={40}>
+          <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+          <h1
+            className="text-main-600 text-3xl  bg-white flex items-center p-2 font-bold"
+            style={{ gridColumn: "2 / -2", gridRow: "span 2" }}
+          >
+            {topic.title}
+          </h1>
+        </SideBarGrid>
+      </div>
       <Chapter chapter={topic.chapters[chapterIndex]} />
     </main>
   );
@@ -22,6 +31,7 @@ function Chapter({ chapter }: { chapter: chapter }) {
   return (
     <div className="text-xl">
       <h2>{chapter.title}</h2>
+
       {chapter.content.map((block, bIndex) => (
         <ChapterContent key={bIndex} block={block} />
       ))}
