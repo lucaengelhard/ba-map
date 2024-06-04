@@ -20,7 +20,7 @@ export default function BGGrid({ width }: { width: number }) {
         squares.push(
           <div
             key={`${row}-${col}`}
-            className="border border-main grow aspect-square"
+            className="border border-main-600 grow aspect-square"
             style={{ width: width, height: width }}
           ></div>
         );

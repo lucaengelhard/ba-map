@@ -172,7 +172,7 @@ function TimelineElement({
   return (
     <div
       ref={boxRef}
-      className={`p-4 text-sm flex gap-4 transition-colors duration-700 ${selected ? "bg-main text-white" : "bg-transparent"}`}
+      className={`p-4 text-sm flex gap-4 transition-colors duration-700 ${selected ? "bg-main-600 text-white" : "bg-transparent"}`}
       key={option.id}
       style={{
         flexGrow: option.diffRatio,

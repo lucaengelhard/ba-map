@@ -58,8 +58,8 @@ function MapInfo({
 }) {
   return (
     <div className="p-4  absolute top-2/3 m-4">
-      <h1 className="text-[2rem] font-bold text-main">{topic.title}</h1>
-      <h2 className="text-main ">{currentChapter.title}</h2>
+      <h1 className="text-[2rem] font-bold text-main-600">{topic.title}</h1>
+      <h2 className="text-main-600 ">{currentChapter.title}</h2>
       {typeof selected !== "number" ? (
         currentChapter.interactionData.map((el, index) => (
           <MapInfoElement
