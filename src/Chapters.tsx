@@ -10,7 +10,7 @@ export default function Chapters({
 }) {
   return (
     <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4 relative">
-      <h1 className="text-main text-xl sticky top-0 bg-white pt-4 pb-1 font-bold">
+      <h1 className="text-main text-3xl sticky top-0 bg-white pt-4 pb-1 font-bold">
         {topic.title}
       </h1>
       <Chapter chapter={topic.chapters[chapterIndex]} />

@@ -1,5 +1,6 @@
 import {
   gebieteGrenzenbisHeute,
+  grenzenHeute,
   mapDataPoint,
   timelineDataPoint,
 } from "./data";
@@ -402,7 +403,7 @@ const topics: topic[] = [
             content: `Seit September 2022 gibt es wieder Massenproteste im Iran. Ausgelöst wurden sie durch den Mord der kurdischen Iranerin Jina Mahsa Amini durch iranische Polizisten. Der kurdische Ausspruch “Jin, Jiyan, Azadî” (Frauen, Leben, Freiheit) wurde zu einem der Hauptparolen der Proteste und erlangte so neue weltweite Bekanntheit, nachdem er ursprünglich ein Slogan der PKK war und auch im Kontext mit Rojava oft verwendet wird`,
           },
         ],
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: grenzenHeute,
         interactionType: "filter",
       },
     ],

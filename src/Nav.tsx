@@ -11,16 +11,16 @@ export default function Nav({
   currentChapterIndex: number;
 }) {
   return (
-    <nav className="col-span-2 p-4 relative">
+    <nav className="col-span-3 p-4 relative">
       {topicList.topics.map((topic, index) => (
         <div key={index} className="mb-4">
           <div
-            className={`font-serif font-bold text-xl mb-1 pt-1`}
+            className={`font-serif font-bold text-3xl mb-1 pt-1`}
             onClick={() => onChange(topic.id, 0)}
           >
             {topic.title}{" "}
           </div>
-          <div>
+          <div className="text-2xl">
             {topic.chapters.map((chapter, cIndex) => (
               <div
                 className={`pb-1 ${
@@ -39,7 +39,7 @@ export default function Nav({
           </div>
         </div>
       ))}
-      <BGGrid width={50} />
+      <BGGrid width={40} />
     </nav>
   );
 }

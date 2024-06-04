@@ -34,14 +34,14 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 text-black w-screen h-screen overflow-hidden">
+      <div className="grid grid-cols-12 gap-8 text-black w-screen h-screen overflow-hidden">
         <Nav
           onChange={onChapterChange}
           currentChapterIndex={currentChapterIndex}
           currentTopic={currentTopic}
         />
         <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
-        <aside className="col-span-4">
+        <aside className="col-span-3">
           {currentChapter.interactionType === "timeline" ? (
             <TimeSlider
               options={currentChapter.interactionData}

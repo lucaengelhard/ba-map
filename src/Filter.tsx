@@ -23,7 +23,7 @@ export default function Filter({
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-screen p-4">
       {options.map((option, index) => (
         <FilterElement
           key={index}
@@ -52,8 +52,19 @@ export function FilterElement({
     <div
       style={{ opacity: selected ? 1 : 0.5 }}
       onClick={() => onFilterClick(index)}
+      className="flex text-3xl mb-7"
     >
-      {option.title}
+      <div
+        className="aspect-square w-1/12"
+        style={{ backgroundColor: option.color ?? "grey" }}
+      ></div>
+      <div className="relative py-1 px-2">
+        {option.title}
+        <div
+          className="absolute top-0 left-0 w-full h-full -z-40 opacity-50"
+          style={{ backgroundColor: option.color ?? "grey" }}
+        ></div>
+      </div>
     </div>
   );
 }

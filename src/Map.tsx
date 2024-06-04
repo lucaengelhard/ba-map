@@ -116,6 +116,7 @@ function TimelineMap({
 }) {
   const [current, setCurrent] = useState(options[selected]);
   const [path, setPath] = useState(current.path);
+  const [color, setColor] = useState<string>();
 
   useEffect(() => {
     const interval = morph(current, options[selected], 1000, 20);
@@ -128,6 +129,7 @@ function TimelineMap({
     duration: number,
     updateInterval: number
   ) {
+    if (targetObj === undefined) return;
     const interpolator = interpolate(currentObj.path, targetObj.path);
     const start = Date.now();
 
@@ -138,6 +140,7 @@ function TimelineMap({
       } else {
         setCurrent(targetObj);
         setPath(targetObj.path);
+        setColor(targetObj.color);
         clearInterval(interval);
       }
     }, updateInterval);
@@ -148,7 +151,7 @@ function TimelineMap({
   return (
     <div className="fixed inset-0">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
-        <path d={path}></path>
+        <path fill={color} d={path}></path>
       </svg>
     </div>
   );
@@ -166,6 +169,7 @@ function FilterMap({
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
         {options.map((option) => (
           <path
+            fill={option.color}
             style={{
               opacity: selected.includes(option.id) ? 0.5 : 0.01,
               transition: "opacity 0.5s",
