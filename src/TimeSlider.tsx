@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { timelineDataPoint } from "./content/data";
 import Sonne from "./assets/icons/Sonne";
-import { SideBarGridElement } from "./Nav";
+import { SideBarGrid, SideBarGridElement } from "./Nav";
+import { GridSizeContext } from "./App";
 
 export default function TimeSlider({
   options,
@@ -10,7 +11,9 @@ export default function TimeSlider({
   options: timelineDataPoint[];
   onChange: (selected: number) => void;
 }) {
+  const gridSize = useContext(GridSizeContext);
   const [selected, setSelected] = useState(0);
+  const [rows, setRows] = useState<number>(20);
 
   useEffect(() => onChange(selected), [onChange, selected]);
 
@@ -62,9 +65,19 @@ export default function TimeSlider({
 
         const diffRatio = diff / timespan.span;
 
-        return { ...option, diff, diffRatio };
+        let span = Math.floor(diffRatio * rows) - 1;
+
+        if (span <= 1) {
+          span = 2;
+        }
+
+        if (span > 3) {
+          span = 3;
+        }
+
+        return { ...option, diff, diffRatio, span };
       }),
-    [options, timespan.span]
+    [options, rows, timespan.span]
   );
 
   function handleChange(selectedChange: number) {
@@ -103,13 +116,35 @@ export default function TimeSlider({
     sliderRef.current.scrollIntoView();
   }, []);
 
+  function onGridChange({ rows }: { cols: number; rows: number }) {
+    setRows(rows - 4);
+  }
+
   return (
+    <>
+      <SideBarGrid cellWidth={gridSize} onGridChange={onGridChange}>
+        <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+        {calcOptions.map((option, index) => (
+          <SideBarGridElement
+            key={index}
+            gridColumn="2 / -1"
+            className="flex gap-4 items-start"
+            selected={option.id === selected}
+            span={option.span}
+            center={false}
+          >
+            <div>{option.year}</div>
+            <div>{option.title}</div>
+          </SideBarGridElement>
+        ))}
+      </SideBarGrid>
+      {/**
     <div className="h-screen flex gap-2 border border-main-300">
       <div
         className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
         onScroll={onScroll}
       >
-        {/**Slider */}
+       
         <div className="h-full"></div>
         <div
           ref={sliderRef}
@@ -118,7 +153,7 @@ export default function TimeSlider({
           <Sonne fill="#E74322" />
         </div>
         <div className="h-full"></div>
-        {/**Slider */}
+      
       </div>
       <div className="h-full flex flex-col justify-between pointer-events-none pb-7 pt-4">
         {calcOptions.map((option, index) => (
@@ -130,7 +165,8 @@ export default function TimeSlider({
           />
         ))}
       </div>
-    </div>
+    </div> */}
+    </>
   );
 }
 
