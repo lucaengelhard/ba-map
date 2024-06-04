@@ -20,7 +20,7 @@ export default function Nav({
             <SideBarGridElement
               span={2}
               className="text-3xl font-bold"
-              content={topic.title}
+              children={topic.title}
               onClick={() => onChange(topic.id, 0)}
               selected={currentTopic.id === topic.id}
               key={tIndex}
@@ -31,7 +31,7 @@ export default function Nav({
                 onClick={() => {
                   onChange(topic.id, cIndex);
                 }}
-                content={chapter.title}
+                children={chapter.title}
                 selected={
                   currentTopic.id === topic.id && currentChapterIndex === cIndex
                 }
@@ -125,17 +125,19 @@ export function SideBarGrid({
 }
 
 export function SideBarGridElement({
-  content,
+  children,
   onClick,
   selected,
   className,
   span,
+  color,
 }: {
-  content: string;
+  children: ReactNode;
   selected: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   className: string;
   span: number;
+  color?: string;
 }) {
   return (
     <div
@@ -143,9 +145,10 @@ export function SideBarGridElement({
       onClick={onClick}
       style={{ gridColumn: "2 / -2", gridRow: `span ${span}` }}
     >
-      {content}
+      {children}
       <div
         className={`absolute top-0 h-full w-full border border-main-300 bg-main-600 -z-20 transition-all duration-300 ${selected ? "left-0" : "-left-full"}`}
+        style={{ backgroundColor: color ?? "#e74322" }}
       ></div>
       <div
         className={`absolute top-0 h-full w-full border border-main-300 bg-white -z-20 transition-all duration-300 ${!selected ? "left-0" : "left-full"}`}
