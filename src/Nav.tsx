@@ -49,7 +49,7 @@ export default function Nav({
         squares.push(
           <div
             key={`${row}-${col}`}
-            className="border border-main-600 grow aspect-square"
+            className="border border-main-300 grow aspect-square"
             style={{ width: cellWidth, height: cellWidth }}
           ></div>
         );
@@ -62,7 +62,7 @@ export default function Nav({
   return (
     <nav
       ref={container}
-      className="col-span-3 grid h-screen relative"
+      className="col-span-3 grid h-screen relative "
       style={{
         gridTemplateColumns: `repeat(${numCols}, ${cellWidth}px)`,
         gridTemplateRows: `repeat(${numRows}, ${cellWidth}px)`,
@@ -74,7 +74,7 @@ export default function Nav({
           <div
             onClick={() => onChange(topic.id, 0)}
             style={{ gridColumn: "2 / -2", gridRow: "span 2" }}
-            className={`text-3xl font-bold flex items-center p-2 ${currentTopic.id === topic.id ? "bg-main-600" : "bg-white"}`}
+            className={`text-3xl font-bold flex items-center p-2 border border-main-300 ${currentTopic.id === topic.id ? "bg-main-600" : "bg-white"}`}
           >
             {topic.title}
           </div>
@@ -85,7 +85,7 @@ export default function Nav({
                 onChange(topic.id, cIndex);
               }}
               style={{ gridColumn: "2 / -2", gridRow: "span 1" }}
-              className={`flex items-center p-2 ${currentTopic.id === topic.id && currentChapterIndex === cIndex ? "bg-main-600" : "bg-white"}`}
+              className={`flex items-center p-2 border border-main-300 ${currentTopic.id === topic.id && currentChapterIndex === cIndex ? "bg-main-600" : "bg-white"}`}
             >
               {chapter.title}
             </div>
@@ -94,7 +94,7 @@ export default function Nav({
         </>
       ))}
       <div
-        className="absolute h-full w-full top-0 left-0 -z-40 grid opacity-50"
+        className="absolute h-full w-full top-0 left-0 -z-40 grid"
         style={{
           gridTemplateColumns: `repeat(${numCols}, ${cellWidth}px)`,
           gridTemplateRows: `repeat(${numRows}, ${cellWidth}px)`,
