@@ -10,7 +10,7 @@ export default function Chapters({
 }) {
   return (
     <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4 relative">
-      <h1 className="text-main text-3xl sticky top-0 bg-white pt-4 pb-1 font-bold">
+      <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-4 pb-1 font-bold">
         {topic.title}
       </h1>
       <Chapter chapter={topic.chapters[chapterIndex]} />
@@ -45,12 +45,12 @@ function ChapterContent({ block }: { block: chapterContent }) {
         <div className="flex gap-4 items-center px-14 ">
           {" "}
           <Sonne fill="#E74322" className="w-[10%]" />
-          <blockquote className="text-main italic w-[90%]">
+          <blockquote className="text-main-600 italic w-[90%]">
             {block.content}
           </blockquote>
         </div>
         {block.title !== undefined && (
-          <div className="text-main flex justify-end mt-2">
+          <div className="text-main-600 flex justify-end mt-2">
             <div className="text-right w-1/2">{block.title}</div>
           </div>
         )}
@@ -64,7 +64,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
         <figure>
           {" "}
           <img src={block.content} alt={block.title} />
-          <figcaption className="text-main mt-2">{block.title}</figcaption>
+          <figcaption className="text-main-600 mt-2">{block.title}</figcaption>
         </figure>
       </div>
     );
