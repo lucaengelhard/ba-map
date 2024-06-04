@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { mapDataPoint } from "./content/data";
 import { SideBarGrid, SideBarGridElement } from "./Nav";
+import { GridSizeContext } from "./App";
 
 export default function Filter({
   onChange,
@@ -9,6 +10,7 @@ export default function Filter({
   options: mapDataPoint[];
   onChange: (selected: number[]) => void;
 }) {
+  const gridSize = useContext(GridSizeContext);
   const [selected, setSelected] = useState(options.map((option) => option.id));
 
   useEffect(() => onChange(selected), [onChange, selected]);
@@ -25,7 +27,7 @@ export default function Filter({
 
   return (
     <div className="h-screen">
-      <SideBarGrid cellWidth={40}>
+      <SideBarGrid cellWidth={gridSize}>
         {options.map((option, index) => (
           <>
             <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>

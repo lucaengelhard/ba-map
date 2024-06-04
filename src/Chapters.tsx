@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { GridSizeContext } from "./App";
 import Sonne from "./assets/icons/Sonne";
 import { chapter, chapterContent, topic } from "./content";
 
@@ -8,6 +10,8 @@ export default function Chapters({
   topic: topic;
   chapterIndex: number;
 }) {
+  const gridSize = useContext(GridSizeContext);
+
   return (
     <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4  relative">
       <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-12 pb-3 mb-4 font-bold border-b-2 border-main-300 px-8">

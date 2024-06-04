@@ -1,6 +1,14 @@
 //import BGGrid from "./BGGrid";
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { topic, topicList } from "./content";
+import { GridSizeContext } from "./App";
 
 export default function Nav({
   onChange,
@@ -11,9 +19,11 @@ export default function Nav({
   currentTopic: topic;
   currentChapterIndex: number;
 }) {
+  const gridSize = useContext(GridSizeContext);
+
   return (
     <nav className="col-span-3">
-      <SideBarGrid cellWidth={40}>
+      <SideBarGrid cellWidth={gridSize}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic, tIndex) => (
           <>

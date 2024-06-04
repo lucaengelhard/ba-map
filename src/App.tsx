@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import NewWindow from "react-new-window";
 
 import Map from "./Map";
@@ -9,6 +9,8 @@ import Nav from "./Nav";
 import Chapters from "./Chapters";
 import Filter from "./Filter";
 //import BGGrid from "./BGGrid";
+
+export const GridSizeContext = createContext(40);
 
 function App() {
   const [currentTopic, setCurrenTopic] = useState(topicList.get(0));
@@ -34,39 +36,41 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden">
-        <Nav
-          onChange={onChapterChange}
-          currentChapterIndex={currentChapterIndex}
-          currentTopic={currentTopic}
-        />
-        <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
-        <aside className="col-span-3">
-          {currentChapter.interactionType === "timeline" ? (
-            <TimeSlider
-              options={currentChapter.interactionData}
-              onChange={onSliderChange}
-            />
-          ) : (
-            <Filter
-              onChange={onFilterChange}
-              options={
-                currentTopic.chapters[currentChapterIndex].interactionData
-              }
-            />
-          )}
-        </aside>
-      </div>
-      <NewWindow features={{ width: 1920, height: 1080 }}>
-        <Map
-          base
-          currentChapter={currentChapter}
-          topic={currentTopic}
-          selected={currentFilter}
-        />
-      </NewWindow>{" "}
-      {/**
+      <GridSizeContext.Provider value={40}>
+        <div className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden">
+          <Nav
+            onChange={onChapterChange}
+            currentChapterIndex={currentChapterIndex}
+            currentTopic={currentTopic}
+          />
+          <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
+          <aside className="col-span-3">
+            {currentChapter.interactionType === "timeline" ? (
+              <TimeSlider
+                options={currentChapter.interactionData}
+                onChange={onSliderChange}
+              />
+            ) : (
+              <Filter
+                onChange={onFilterChange}
+                options={
+                  currentTopic.chapters[currentChapterIndex].interactionData
+                }
+              />
+            )}
+          </aside>
+        </div>
+        <NewWindow features={{ width: 1920, height: 1080 }}>
+          <Map
+            base
+            currentChapter={currentChapter}
+            topic={currentTopic}
+            selected={currentFilter}
+          />
+        </NewWindow>{" "}
+        {/**
       <BGGrid width={80} /> */}
+      </GridSizeContext.Provider>
     </>
   );
 }
