@@ -69,26 +69,30 @@ export default function Nav({
       }}
     >
       <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
-      {topicList.topics.map((topic) => (
+      {topicList.topics.map((topic, tIndex) => (
         <>
-          <div
+          <SideBarGridElement
+            span={2}
+            className="text-3xl font-bold"
+            content={topic.title}
             onClick={() => onChange(topic.id, 0)}
-            style={{ gridColumn: "2 / -2", gridRow: "span 2" }}
-            className={`text-3xl font-bold flex items-center p-2 border border-main-300 ${currentTopic.id === topic.id ? "bg-main-600" : "bg-white"}`}
-          >
-            {topic.title}
-          </div>
+            selected={currentTopic.id === topic.id}
+            key={tIndex}
+          />
 
           {topic.chapters.map((chapter, cIndex) => (
-            <div
+            <SideBarGridElement
               onClick={() => {
                 onChange(topic.id, cIndex);
               }}
-              style={{ gridColumn: "2 / -2", gridRow: "span 1" }}
-              className={`flex items-center p-2 border border-main-300 ${currentTopic.id === topic.id && currentChapterIndex === cIndex ? "bg-main-600" : "bg-white"}`}
-            >
-              {chapter.title}
-            </div>
+              content={chapter.title}
+              selected={
+                currentTopic.id === topic.id && currentChapterIndex === cIndex
+              }
+              span={1}
+              key={cIndex}
+              className="text-xl"
+            />
           ))}
           <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         </>
@@ -105,3 +109,35 @@ export default function Nav({
     </nav>
   );
 }
+
+function SideBarGridElement({
+  content,
+  onClick,
+  selected,
+  className,
+  span,
+}: {
+  content: string;
+  selected: boolean;
+  onClick: () => void;
+  className: string;
+  span: number;
+}) {
+  return (
+    <div
+      className={`flex items-center p-2 relative overflow-hidden ${className}`}
+      onClick={onClick}
+      style={{ gridColumn: "2 / -2", gridRow: `span ${span}` }}
+    >
+      {content}
+      <div
+        className={`absolute top-0 h-full w-full border border-main-300 bg-main-600 -z-20 transition-all duration-300 ${selected ? "left-0" : "-left-full"}`}
+      ></div>
+      <div
+        className={`absolute top-0 h-full w-full border border-main-300 bg-white -z-20 transition-all duration-300 ${!selected ? "left-0" : "left-full"}`}
+      ></div>
+    </div>
+  );
+}
+
+//${selected ? "bg-main-600" : "bg-white"}
