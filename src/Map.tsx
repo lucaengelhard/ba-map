@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
 import { interpolate } from "flubber";
@@ -114,14 +114,21 @@ function TimelineMap({
   options: mapDataPoint[];
   selected: number;
 }) {
-  const [current, setCurrent] = useState(options[selected]);
+  const getOption = useCallback(
+    (id: number) => {
+      return options.find((option) => option.id === id) ?? options[0];
+    },
+    [options]
+  );
+
+  const [current, setCurrent] = useState(getOption(selected));
   const [path, setPath] = useState(current.path);
   const [color, setColor] = useState<string>();
 
   useEffect(() => {
-    const interval = morph(current, options[selected], 1000, 20);
+    const interval = morph(current, getOption(selected), 1000, 20);
     return () => clearInterval(interval);
-  }, [current, options, selected]);
+  }, [current, getOption, options, selected]);
 
   function morph(
     currentObj: mapDataPoint,
