@@ -484,7 +484,12 @@ export type chapter =
       interactionType: "timeline";
     };
 
-export type topic = { id: number; title: string; chapters: chapter[] };
+export type topic = {
+  id: number;
+  title: string;
+  chapters: chapter[];
+  defaultColor?: string;
+};
 
 export type topicList = { topics: topic[]; get: (id: number) => topic };
 

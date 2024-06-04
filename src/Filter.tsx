@@ -23,16 +23,18 @@ export default function Filter({
   }
 
   return (
-    <div className="h-screen p-4">
-      {options.map((option, index) => (
-        <FilterElement
-          key={index}
-          index={index}
-          option={option}
-          onFilterClick={onFilterClick}
-          selected={selected.includes(index)}
-        />
-      ))}
+    <div className="h-screen p-4 grid items-center">
+      <div>
+        {" "}
+        {options.map((option, index) => (
+          <FilterElement
+            key={index}
+            option={option}
+            onFilterClick={onFilterClick}
+            selected={selected.includes(option.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -40,18 +42,16 @@ export default function Filter({
 export function FilterElement({
   option,
   onFilterClick,
-  index,
   selected,
 }: {
   option: mapDataPoint;
   onFilterClick: (index: number) => void;
-  index: number;
   selected: boolean;
 }) {
   return (
     <div
       style={{ opacity: selected ? 1 : 0.5 }}
-      onClick={() => onFilterClick(index)}
+      onClick={() => onFilterClick(option.id)}
       className="flex text-3xl mb-7"
     >
       <div

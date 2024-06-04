@@ -132,7 +132,7 @@ function TimelineMap({
     if (targetObj === undefined) return;
     const interpolator = interpolate(currentObj.path, targetObj.path);
     const start = Date.now();
-
+    setColor(targetObj.color);
     const interval = setInterval(() => {
       const elapsed = Date.now() - start;
       if (elapsed < duration) {
@@ -140,7 +140,7 @@ function TimelineMap({
       } else {
         setCurrent(targetObj);
         setPath(targetObj.path);
-        setColor(targetObj.color);
+
         clearInterval(interval);
       }
     }, updateInterval);
@@ -169,9 +169,14 @@ function FilterMap({
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
         {options.map((option) => (
           <path
-            fill={option.color}
+            stroke={option.outline ? option.color ?? "grey" : "none"}
+            fill={!option.outline ? option.color : "none"}
             style={{
-              opacity: selected.includes(option.id) ? 0.5 : 0.01,
+              opacity: selected.includes(option.id)
+                ? option.opacity !== undefined
+                  ? option.opacity
+                  : 0.5
+                : 0.01,
               transition: "opacity 0.5s",
             }}
             d={option.path}
