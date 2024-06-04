@@ -9,11 +9,13 @@ export default function Chapters({
   chapterIndex: number;
 }) {
   return (
-    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4 relative">
-      <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-4 pb-1 font-bold">
+    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4  relative">
+      <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-12 pb-3 mb-4 font-bold border-b-2 border-main-300 px-8">
         {topic.title}
       </h1>
-      <Chapter chapter={topic.chapters[chapterIndex]} />
+      <div className="px-8">
+        <Chapter chapter={topic.chapters[chapterIndex]} />
+      </div>
     </main>
   );
 }
