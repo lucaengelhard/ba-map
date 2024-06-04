@@ -1,5 +1,5 @@
 //import BGGrid from "./BGGrid";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { topic, topicList } from "./content";
 
 export default function Nav({
@@ -11,9 +11,51 @@ export default function Nav({
   currentTopic: topic;
   currentChapterIndex: number;
 }) {
-  const [numCols] = useState(10);
+  return (
+    <nav className="col-span-3">
+      <SideBarGrid numCols={10}>
+        <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+        {topicList.topics.map((topic, tIndex) => (
+          <>
+            <SideBarGridElement
+              span={2}
+              className="text-3xl font-bold"
+              content={topic.title}
+              onClick={() => onChange(topic.id, 0)}
+              selected={currentTopic.id === topic.id}
+              key={tIndex}
+            />
 
-  const container = useRef<HTMLElement>(null);
+            {topic.chapters.map((chapter, cIndex) => (
+              <SideBarGridElement
+                onClick={() => {
+                  onChange(topic.id, cIndex);
+                }}
+                content={chapter.title}
+                selected={
+                  currentTopic.id === topic.id && currentChapterIndex === cIndex
+                }
+                span={1}
+                key={cIndex}
+                className="text-xl"
+              />
+            ))}
+            <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+          </>
+        ))}
+      </SideBarGrid>
+    </nav>
+  );
+}
+
+export function SideBarGrid({
+  children,
+  numCols,
+}: {
+  numCols: number;
+  children: ReactNode;
+}) {
+  const container = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -60,43 +102,15 @@ export default function Nav({
   }, [cellWidth, numCols, numRows]);
 
   return (
-    <nav
+    <div
       ref={container}
-      className="col-span-3 grid h-screen relative "
+      className="grid h-screen relative"
       style={{
         gridTemplateColumns: `repeat(${numCols}, ${cellWidth}px)`,
         gridTemplateRows: `repeat(${numRows}, ${cellWidth}px)`,
       }}
     >
-      <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
-      {topicList.topics.map((topic, tIndex) => (
-        <>
-          <SideBarGridElement
-            span={2}
-            className="text-3xl font-bold"
-            content={topic.title}
-            onClick={() => onChange(topic.id, 0)}
-            selected={currentTopic.id === topic.id}
-            key={tIndex}
-          />
-
-          {topic.chapters.map((chapter, cIndex) => (
-            <SideBarGridElement
-              onClick={() => {
-                onChange(topic.id, cIndex);
-              }}
-              content={chapter.title}
-              selected={
-                currentTopic.id === topic.id && currentChapterIndex === cIndex
-              }
-              span={1}
-              key={cIndex}
-              className="text-xl"
-            />
-          ))}
-          <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
-        </>
-      ))}
+      {children}
       <div
         className="absolute h-full w-full top-0 left-0 -z-40 grid"
         style={{
@@ -106,11 +120,11 @@ export default function Nav({
       >
         {squares.map((square) => square)}
       </div>
-    </nav>
+    </div>
   );
 }
 
-function SideBarGridElement({
+export function SideBarGridElement({
   content,
   onClick,
   selected,
@@ -139,5 +153,3 @@ function SideBarGridElement({
     </div>
   );
 }
-
-//${selected ? "bg-main-600" : "bg-white"}
