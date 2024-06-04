@@ -104,7 +104,7 @@ export default function TimeSlider({
   }, []);
 
   return (
-    <div className="h-screen flex gap-2">
+    <div className="h-screen flex gap-2 border border-main-300">
       <div
         className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
         onScroll={onScroll}
