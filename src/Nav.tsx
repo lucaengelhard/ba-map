@@ -13,7 +13,7 @@ export default function Nav({
 }) {
   return (
     <nav className="col-span-3">
-      <SideBarGrid numCols={10}>
+      <SideBarGrid cellWidth={40}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic, tIndex) => (
           <>
@@ -50,9 +50,9 @@ export default function Nav({
 
 export function SideBarGrid({
   children,
-  numCols,
+  cellWidth,
 }: {
-  numCols: number;
+  cellWidth: number;
   children: ReactNode;
 }) {
   const container = useRef<HTMLDivElement>(null);
@@ -76,9 +76,9 @@ export function SideBarGrid({
     }
   }, []);
 
-  const cellWidth = useMemo(() => {
-    return Math.floor(containerSize.width / numCols);
-  }, [containerSize.width, numCols]);
+  const numCols = useMemo(() => {
+    return Math.floor(containerSize.width / cellWidth);
+  }, [containerSize.width, cellWidth]);
 
   const numRows = useMemo(() => {
     return Math.floor(containerSize.height / cellWidth) + 1;
