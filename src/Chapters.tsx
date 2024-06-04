@@ -13,11 +13,25 @@ export default function Chapters({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll pb-4  relative">
-      <h1 className="text-main-600 text-3xl sticky top-0 bg-white pt-12 pb-3 mb-4 font-bold border-b-2 border-main-300 px-8">
+    <main className="col-span-6 h-screen overflow-x-hidden hide-scroll relative">
+      <h1
+        className="text-main-600 text-3xl sticky top-0 bg-white  font-bold border border-main-300 flex items-center p-2"
+        style={{
+          height: gridSize * 3 + "px",
+          paddingLeft: gridSize + "px",
+          paddingTop: gridSize + "px",
+        }}
+      >
         {topic.title}
       </h1>
-      <div className="px-8">
+      <div
+        className="border border-main-300"
+        style={{
+          paddingLeft: gridSize + "px",
+          paddingRight: gridSize + "px",
+          paddingTop: gridSize + "px",
+        }}
+      >
         <Chapter chapter={topic.chapters[chapterIndex]} />
       </div>
     </main>
