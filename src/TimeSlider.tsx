@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { timelineDataPoint } from "./content/data";
 import Sonne from "./assets/icons/Sonne";
+import { SideBarGridElement } from "./Nav";
 
 export default function TimeSlider({
   options,
@@ -172,14 +173,20 @@ function TimelineElement({
   return (
     <div
       ref={boxRef}
-      className={`p-4 text-sm flex gap-4 transition-colors duration-700 ${selected ? "bg-main-600 text-white" : "bg-transparent"}`}
       key={option.id}
       style={{
         flexGrow: option.diffRatio,
       }}
     >
-      <div>{option.year}</div>
-      <div>{option.title}</div>
+      {" "}
+      <SideBarGridElement
+        className="w-full h-full text-sm flex gap-4 items-start"
+        selected={selected}
+        span={1}
+      >
+        <div>{option.year}</div>
+        <div>{option.title}</div>
+      </SideBarGridElement>
     </div>
   );
 }
