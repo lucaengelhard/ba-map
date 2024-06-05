@@ -13,16 +13,18 @@ export default function Chapters({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <main className="col-span-5 h-screen overflow-x-hidden hide-scroll relative">
+    <main className="col-span-5 h-screen overflow-x-hidden relative">
       <h1
-        className="text-main-600 text-3xl sticky top-0 bg-white  font-bold border border-main-300 flex items-center p-2"
+        className="text-main-600 text-3xl sticky top-0 bg-white  border border-main-300 flex items-center p-2 gap-4"
         style={{
-          height: gridSize * 3 + "px",
+          height: gridSize * 4 + "px",
           paddingLeft: gridSize + "px",
           paddingTop: gridSize + "px",
         }}
       >
-        {topic.title}
+        <div className="font-bold ">{topic.title} </div>
+        <div>|</div>
+        <div>{topic.chapters[chapterIndex].title}</div>
       </h1>
       <div
         className="border border-main-300"
@@ -41,7 +43,6 @@ export default function Chapters({
 function Chapter({ chapter }: { chapter: chapter }) {
   return (
     <div className="text-xl">
-      <h2>{chapter.title}</h2>
       {chapter.content.map((block, bIndex) => (
         <ChapterContent key={bIndex} block={block} />
       ))}

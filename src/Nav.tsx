@@ -29,7 +29,7 @@ export default function Nav({
         {topicList.topics.map((topic, tIndex) => (
           <>
             <SideBarGridElement
-              span={2}
+              span={3}
               className="text-3xl font-bold"
               children={topic.title}
               onClick={() => onChange(topic.id, 0)}
@@ -37,20 +37,22 @@ export default function Nav({
               key={tIndex}
             />
 
-            {topic.chapters.map((chapter, cIndex) => (
-              <SideBarGridElement
-                onClick={() => {
-                  onChange(topic.id, cIndex);
-                }}
-                children={chapter.title}
-                selected={
-                  currentTopic.id === topic.id && currentChapterIndex === cIndex
-                }
-                span={1}
-                key={cIndex}
-                className="text-xl"
-              />
-            ))}
+            {currentTopic.id === topic.id &&
+              topic.chapters.map((chapter, cIndex) => (
+                <SideBarGridElement
+                  onClick={() => {
+                    onChange(topic.id, cIndex);
+                  }}
+                  children={chapter.title}
+                  selected={
+                    currentTopic.id === topic.id &&
+                    currentChapterIndex === cIndex
+                  }
+                  span={2}
+                  key={cIndex}
+                  className="text-2xl"
+                />
+              ))}
             <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
           </>
         ))}
@@ -167,7 +169,8 @@ export function SideBarGridElement({
       className={clsx(
         className,
         "flex p-2 relative overflow-hidden",
-        center && "items-center"
+        center && "items-center",
+        selected && "text-white"
       )}
       onClick={onClick}
       style={{ gridColumn: gridColumn ?? "2 / -2", gridRow: `span ${span}` }}
