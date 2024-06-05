@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { GridSizeContext } from "./App";
 import Sonne from "./assets/icons/Sonne";
 import { chapter, chapterContent, topic } from "./content";
@@ -11,6 +11,14 @@ export default function Chapters({
   chapterIndex: number;
 }) {
   const gridSize = useContext(GridSizeContext);
+
+  const container = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (container.current === null) return;
+    if (container.current.parentElement === null) return;
+    container.current.parentElement.scrollTo({ top: 0 });
+  }, [topic, chapterIndex]);
 
   return (
     <main className="col-span-5 h-screen overflow-x-hidden relative">
@@ -27,6 +35,7 @@ export default function Chapters({
         <div>{topic.chapters[chapterIndex].title}</div>
       </h1>
       <div
+        ref={container}
         className="border border-main-300"
         style={{
           paddingLeft: gridSize + "px",
