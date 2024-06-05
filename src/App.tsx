@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import NewWindow from "react-new-window";
 
 import Map from "./Map";
@@ -21,6 +21,9 @@ function App() {
   );
   const [currentFilter, setCurrentFilter] = useState<number | number[]>(0);
 
+  const mainUi = useRef<HTMLDivElement>(null);
+  const [fullscreen, setFullScreen] = useState(false);
+
   function onSliderChange(selected: number) {
     setCurrentFilter(selected);
   }
@@ -34,10 +37,28 @@ function App() {
     setCurrentChapterIndex(chapterIndex);
   }
 
+  async function startFullScreen() {
+    if (mainUi.current === null) return;
+    await mainUi.current.requestFullscreen();
+    setFullScreen(true);
+  }
+
   return (
     <>
       <GridSizeContext.Provider value={40}>
-        <div className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden">
+        <div
+          ref={mainUi}
+          className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden bg-white"
+        >
+          {" "}
+          {!fullscreen && (
+            <div
+              className="fixed top-1/2 left-1/2 bg-main-600 p-10 z-50"
+              onClick={startFullScreen}
+            >
+              Fullscreen
+            </div>
+          )}
           <Nav
             onChange={onChapterChange}
             currentChapterIndex={currentChapterIndex}
