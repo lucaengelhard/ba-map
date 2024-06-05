@@ -14,6 +14,7 @@ export default function TimeSlider({
   const gridSize = useContext(GridSizeContext);
   const [selected, setSelected] = useState(0);
   const [rows, setRows] = useState<number>(20);
+  const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => onChange(selected), [onChange, selected]);
 
@@ -82,13 +83,16 @@ export default function TimeSlider({
   }, [gridSize, options, rows, timespan.span]);
 
   function onScroll() {
+    if (scrolling) return;
     if (sliderRef.current === null) return;
 
     const BoundingBox = sliderRef.current.getBoundingClientRect();
 
     const slidertop = BoundingBox.y;
 
-    const filtered = calcOptions.filter((opt) => opt.elTop < slidertop);
+    const filtered = calcOptions.filter(
+      (opt) => opt.elTop < slidertop + BoundingBox.height / 2
+    );
 
     if (filtered.length > 0) {
       const selected = filtered.reduce((prev, current) => {
@@ -112,6 +116,26 @@ export default function TimeSlider({
     setRows(rows);
   }
 
+  function onOptionClick(id: number) {
+    const selectedOption = calcOptions.find((option) => option.id === id);
+    if (selectedOption === undefined) return;
+
+    setSelected(selectedOption.id);
+    if (sliderRef.current === null) return;
+    if (sliderRef.current.parentElement === null) return;
+
+    setScrolling(true);
+    const BoundingBox = sliderRef.current.getBoundingClientRect();
+
+    const slidertop = BoundingBox.y;
+
+    sliderRef.current.parentElement.scrollBy({
+      top: slidertop - selectedOption.elTop,
+      behavior: "instant",
+    });
+    setScrolling(false);
+  }
+
   return (
     <>
       <SideBarGrid cellWidth={gridSize} onGridChange={onGridChange}>
@@ -124,6 +148,7 @@ export default function TimeSlider({
             selected={option.id === selected}
             span={option.span}
             center={false}
+            onClick={() => onOptionClick(option.id)}
           >
             <div className="italic font-bold">{option.year}</div>
             <div className="font-sans">{option.title}</div>
