@@ -9,6 +9,7 @@ import {
 } from "react";
 import { topic, topicList } from "./content";
 import { GridSizeContext } from "./App";
+import clsx from "clsx";
 
 export default function Nav({
   onChange,
@@ -28,7 +29,7 @@ export default function Nav({
         {topicList.topics.map((topic, tIndex) => (
           <>
             <SideBarGridElement
-              span={2}
+              span={3}
               className="text-3xl font-bold"
               children={topic.title}
               onClick={() => onChange(topic.id, 0)}
@@ -36,20 +37,22 @@ export default function Nav({
               key={tIndex}
             />
 
-            {topic.chapters.map((chapter, cIndex) => (
-              <SideBarGridElement
-                onClick={() => {
-                  onChange(topic.id, cIndex);
-                }}
-                children={chapter.title}
-                selected={
-                  currentTopic.id === topic.id && currentChapterIndex === cIndex
-                }
-                span={1}
-                key={cIndex}
-                className="text-xl"
-              />
-            ))}
+            {currentTopic.id === topic.id &&
+              topic.chapters.map((chapter, cIndex) => (
+                <SideBarGridElement
+                  onClick={() => {
+                    onChange(topic.id, cIndex);
+                  }}
+                  children={chapter.title}
+                  selected={
+                    currentTopic.id === topic.id &&
+                    currentChapterIndex === cIndex
+                  }
+                  span={2}
+                  key={cIndex}
+                  className="text-2xl"
+                />
+              ))}
             <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
           </>
         ))}
@@ -61,9 +64,11 @@ export default function Nav({
 export function SideBarGrid({
   children,
   cellWidth,
+  onGridChange,
 }: {
   cellWidth: number;
   children: ReactNode;
+  onGridChange?: ({ cols, rows }: { cols: number; rows: number }) => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
@@ -93,6 +98,12 @@ export function SideBarGrid({
   const numRows = useMemo(() => {
     return Math.floor(containerSize.height / cellWidth) + 1;
   }, [cellWidth, containerSize.height]);
+
+  useEffect(() => {
+    if (onGridChange) {
+      onGridChange({ cols: numCols, rows: numRows });
+    }
+  }, [numCols, numRows, onGridChange]);
 
   const squares = useMemo(() => {
     const squares = [];
@@ -141,6 +152,8 @@ export function SideBarGridElement({
   className,
   span,
   color,
+  gridColumn,
+  center,
 }: {
   children: ReactNode;
   selected: boolean;
@@ -148,12 +161,19 @@ export function SideBarGridElement({
   className: string;
   span: number;
   color?: string;
+  gridColumn?: string;
+  center?: boolean;
 }) {
   return (
     <div
-      className={`flex items-center p-2 relative overflow-hidden ${className}`}
+      className={clsx(
+        className,
+        "flex p-2 relative overflow-hidden",
+        center && "items-center",
+        selected && "text-white"
+      )}
       onClick={onClick}
-      style={{ gridColumn: "2 / -2", gridRow: `span ${span}` }}
+      style={{ gridColumn: gridColumn ?? "2 / -2", gridRow: `span ${span}` }}
     >
       {children}
       <div

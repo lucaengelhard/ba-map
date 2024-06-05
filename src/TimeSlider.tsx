@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { timelineDataPoint } from "./content/data";
 import Sonne from "./assets/icons/Sonne";
-import { SideBarGridElement } from "./Nav";
+import { SideBarGrid, SideBarGridElement } from "./Nav";
+import { GridSizeContext } from "./App";
 
 export default function TimeSlider({
   options,
@@ -10,11 +11,12 @@ export default function TimeSlider({
   options: timelineDataPoint[];
   onChange: (selected: number) => void;
 }) {
+  const gridSize = useContext(GridSizeContext);
   const [selected, setSelected] = useState(0);
+  const [rows, setRows] = useState<number>(20);
+  const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => onChange(selected), [onChange, selected]);
-
-  const timelineElementPos = useRef<Record<number, number>>({});
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -52,141 +54,130 @@ export default function TimeSlider({
     return { span: maxYear - minYear, minYear, maxYear };
   }, [options]);
 
-  const calcOptions = useMemo(
-    () =>
-      options.map((option, index) => {
-        const diff =
-          index === options.length - 1
-            ? 0
-            : options[index + 1].year - option.year;
+  const calcOptions = useMemo(() => {
+    let topHeight = gridSize;
 
-        const diffRatio = diff / timespan.span;
+    return options.map((option, index) => {
+      const diff =
+        index === options.length - 1
+          ? 0
+          : options[index + 1].year - option.year;
 
-        return { ...option, diff, diffRatio };
-      }),
-    [options, timespan.span]
-  );
+      const diffRatio = diff / timespan.span;
 
-  function handleChange(selectedChange: number) {
-    setSelected(selectedChange);
-  }
+      let span = Math.floor(diffRatio * (rows - 4)) - 1;
+
+      if (span <= 1) {
+        span = 2;
+      }
+
+      if (span > 3) {
+        span = 3;
+      }
+
+      const elTop = topHeight;
+      topHeight = topHeight + span * gridSize;
+
+      return { ...option, diff, diffRatio, span, elTop };
+    });
+  }, [gridSize, options, rows, timespan.span]);
 
   function onScroll() {
+    if (scrolling) return;
     if (sliderRef.current === null) return;
 
     const BoundingBox = sliderRef.current.getBoundingClientRect();
 
     const slidertop = BoundingBox.y;
 
-    const elements = timelineElementPos.current;
+    const filtered = calcOptions.filter(
+      (opt) => opt.elTop < slidertop + BoundingBox.height / 2
+    );
 
-    let maxPos = 0;
-    let sliderSelected = 0;
+    if (filtered.length > 0) {
+      const selected = filtered.reduce((prev, current) => {
+        return prev.elTop > current.elTop ? prev : current;
+      });
 
-    for (const id in elements) {
-      if (Object.prototype.hasOwnProperty.call(elements, id)) {
-        const pos = elements[id];
-        if (pos <= slidertop + BoundingBox.height / 2 && pos > maxPos) {
-          maxPos = pos;
-          sliderSelected = parseInt(id);
-        }
-      }
+      setSelected(selected.id);
+    } else {
+      setSelected(0);
     }
-
-    handleChange(sliderSelected);
   }
 
   //Slider at the top when mounting
   useEffect(() => {
     if (sliderRef.current === null) return;
+    if (sliderRef.current.parentElement === null) return;
 
-    sliderRef.current.scrollIntoView();
+    sliderRef.current.parentElement.scrollBy({ top: window.innerHeight });
   }, []);
 
+  function onGridChange({ rows }: { cols: number; rows: number }) {
+    setRows(rows);
+  }
+
+  function onOptionClick(id: number) {
+    const selectedOption = calcOptions.find((option) => option.id === id);
+    if (selectedOption === undefined) return;
+
+    setSelected(selectedOption.id);
+    if (sliderRef.current === null) return;
+    if (sliderRef.current.parentElement === null) return;
+
+    setScrolling(true);
+    const BoundingBox = sliderRef.current.getBoundingClientRect();
+
+    const slidertop = BoundingBox.y;
+
+    sliderRef.current.parentElement.scrollBy({
+      top: slidertop - selectedOption.elTop,
+      behavior: "instant",
+    });
+    setScrolling(false);
+  }
+
   return (
-    <div className="h-screen flex gap-2">
-      <div
-        className="h-full max-w-20  overflow-x-hidden overflow-y-auto hide-scroll line-background"
-        onScroll={onScroll}
-      >
-        {/**Slider */}
-        <div className="h-full"></div>
-        <div
-          ref={sliderRef}
-          className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
-        >
-          <Sonne fill="#E74322" />
-        </div>
-        <div className="h-full"></div>
-        {/**Slider */}
-      </div>
-      <div className="h-full flex flex-col justify-between pointer-events-none pb-7 pt-4">
+    <>
+      <SideBarGrid cellWidth={gridSize} onGridChange={onGridChange}>
+        <div style={{ gridColumn: "4 / -2", gridRow: "span 1" }}></div>
         {calcOptions.map((option, index) => (
-          <TimelineElement
+          <SideBarGridElement
             key={index}
-            option={option}
-            timelineElementPos={timelineElementPos}
-            selected={selected === option.id}
-          />
+            gridColumn="4 / -1"
+            className="flex gap-4 items-start"
+            selected={option.id === selected}
+            span={option.span}
+            center={false}
+            onClick={() => onOptionClick(option.id)}
+          >
+            <div className="italic font-bold">{option.year}</div>
+            <div className="font-sans">{option.title}</div>
+          </SideBarGridElement>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function TimelineElement({
-  option,
-  timelineElementPos,
-  selected,
-}: {
-  option: {
-    diff: number;
-    diffRatio: number;
-    id: number;
-    year: number;
-    title: string;
-  };
-  timelineElementPos: React.MutableRefObject<Record<number, number>>;
-  selected: boolean;
-}) {
-  const boxRef = useRef<HTMLDivElement>(null);
-
-  const getPosition = () => {
-    if (boxRef.current === null) return;
-
-    const y = boxRef.current.offsetTop;
-
-    timelineElementPos.current = {
-      ...timelineElementPos.current,
-      [option.id]: y,
-    };
-  };
-
-  useEffect(() => {
-    getPosition();
-  });
-
-  useEffect(() => {
-    window.addEventListener("resize", getPosition);
-  });
-
-  return (
-    <div
-      ref={boxRef}
-      key={option.id}
-      style={{
-        flexGrow: option.diffRatio,
-      }}
-    >
-      {" "}
-      <SideBarGridElement
-        className="w-full h-full text-sm flex gap-4 items-start"
-        selected={selected}
-        span={1}
-      >
-        <div>{option.year}</div>
-        <div>{option.title}</div>
-      </SideBarGridElement>
-    </div>
+        <div
+          className="overflow-x-hidden overflow-y-auto hide-scroll max-h-screen px-2"
+          onScroll={onScroll}
+          style={{ gridColumn: "1 / 4", gridRow: `1 / span ${rows}` }}
+        >
+          <div className="h-full"></div>
+          <div
+            ref={sliderRef}
+            className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
+          >
+            <Sonne fill="#E74322" />
+          </div>
+          <div className="h-full"></div>
+        </div>
+        <div
+          style={{
+            gridColumn: "2 / 3",
+            gridRow: `1 / span ${rows - 1}`,
+            boxSizing: "border-box",
+          }}
+          className="bg-main-600 rounded-full border-[15px] border-white"
+        ></div>
+      </SideBarGrid>
+    </>
   );
 }
