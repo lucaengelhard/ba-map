@@ -125,8 +125,8 @@ export default function TimeSlider({
             span={option.span}
             center={false}
           >
-            <div>{option.year}</div>
-            <div>{option.title}</div>
+            <div className="italic font-bold">{option.year}</div>
+            <div className="font-sans">{option.title}</div>
           </SideBarGridElement>
         ))}
         <div
@@ -143,6 +143,14 @@ export default function TimeSlider({
           </div>
           <div className="h-full"></div>
         </div>
+        <div
+          style={{
+            gridColumn: "2 / 3",
+            gridRow: `1 / span ${rows - 1}`,
+            boxSizing: "border-box",
+          }}
+          className="bg-main-600 rounded-full border-[15px] border-white"
+        ></div>
       </SideBarGrid>
     </>
   );
