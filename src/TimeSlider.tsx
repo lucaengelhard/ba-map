@@ -108,8 +108,9 @@ export default function TimeSlider({
   //Slider at the top when mounting
   useEffect(() => {
     if (sliderRef.current === null) return;
+    if (sliderRef.current.parentElement === null) return;
 
-    sliderRef.current.scrollIntoView();
+    sliderRef.current.parentElement.scrollBy({ top: window.innerHeight });
   }, []);
 
   function onGridChange({ rows }: { cols: number; rows: number }) {
