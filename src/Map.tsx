@@ -137,7 +137,15 @@ function TimelineMap({
     updateInterval: number
   ) {
     if (targetObj === undefined) return;
-    const interpolator = interpolate(currentObj.path, targetObj.path);
+
+    const currentPath = currentObj.path;
+
+    const targetPath = targetObj.path;
+
+    if (currentPath === targetPath) return;
+
+    const interpolator = interpolate(currentPath, targetPath);
+    console.log("interpolator created");
     const start = Date.now();
     setColor(targetObj.color);
     const interval = setInterval(() => {
