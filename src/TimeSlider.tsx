@@ -65,7 +65,7 @@ export default function TimeSlider({
 
       const diffRatio = diff / timespan.span;
 
-      let span = Math.floor(diffRatio * (rows - 4)) - 1;
+      let span = Math.floor(diffRatio * rows) + 1;
 
       if (span <= 1) {
         span = 2;
