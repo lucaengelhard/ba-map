@@ -1,4 +1,7 @@
 import {
+  baseInfo,
+  combineData,
+  dOrigin,
   gebieteGrenzenbisHeute,
   grenzenHeute,
   mapDataPoint,
@@ -81,8 +84,8 @@ const topics: topic[] = [
             content: `401 v.u.Z. berichtet Xenophon, ein griechischer Kommandant und Abenteurer, dass seine Armee beim Durchmarsch durch das heutige Nord-Kurdistan von den “Karduchoi” (Karduchen) angegriffen wurden. Die Berichte des Xenophon sind eine wichtige Quelle für die kurdische Geschichtsforschung. Der Bericht lässt schließen, dass es zu dieser Zeit eine Staatswesen im nördlichen Mesopotamien, also Nord-Kurdistan gab, das oberflächlich zum Persischen Reich gehörte. Dieses Staatswesen hat viele verschiedene Namen, die wahrscheinlich durch verschiedene Übersetzungen des gleichen Begriffes entstanden: Corduene, Cordyene, Cardyene, Gordyaea, Korduene, Korchayk und Giridyan. Der römisch Historiker Strabon verwendet die Bezeichnung Gordyene für die Berge zwischen Amed und Mush und erwähnt den Begriff “Kyrtii”.`,
           },
         ],
-        interactionData: gebieteGrenzenbisHeute,
-        interactionType: "timeline",
+        interactionData: combineData(baseInfo, dOrigin),
+        interactionType: "filter",
       },
       {
         title: "Beherrscht",
@@ -264,7 +267,7 @@ const topics: topic[] = [
           {
             title: "Griechische Expansion & Attatürks Feldzug",
             type: "text",
-            content: `Ab Mai 1919 expandiert die griechische Armee weiter nach Osten und nimmt weiter Teile Anatoliens ein. Der Mustafa Kemal Pascha wird beauftragt, die griechischen Milizen zu bekämpfen. Er mobilisiert Osmanische Truppen zum Widerstand gegen Besatzungstruppen und gewinnt viele Kurd*innen mit Versprechungen, "einen Staat der Türken und Kurden zu gründen" für sich, welche entscheidend für seine späteren Erfolge sind. Dieser "Befreiungskrieg" endet 1922 mit dem Sieg Atatürks`,
+            content: `Ab Mai 1919 expandiert die griechische Armee weiter nach Osten und nimmt weiter Teile Anatoliens ein. Mustafa Kemal Pascha wird beauftragt, die griechischen Milizen zu bekämpfen. Er mobilisiert Osmanische Truppen zum Widerstand gegen Besatzungstruppen und gewinnt viele Kurd*innen mit Versprechungen, "einen Staat der Türken und Kurden zu gründen" für sich, welche entscheidend für seine späteren Erfolge sind. Dieser "Befreiungskrieg" endet 1922 mit dem Sieg Atatürks`,
           },
           {
             title: "Vertrag von Lausanne",
@@ -420,8 +423,8 @@ const topics: topic[] = [
       },
       {
         title: "Bevölkerungsanteil",
-        interactionData: gebieteGrenzenbisHeute,
-        interactionType: "timeline",
+        interactionData: combineData(grenzenHeute, gebieteGrenzenbisHeute),
+        interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
