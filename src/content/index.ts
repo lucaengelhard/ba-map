@@ -1,7 +1,7 @@
 import {
-  baseInfo,
   combineData,
   dOrigin,
+  dOttoman,
   gebieteGrenzenbisHeute,
   grenzenHeute,
   mapDataPoint,
@@ -84,7 +84,7 @@ const topics: topic[] = [
             content: `401 v.u.Z. berichtet Xenophon, ein griechischer Kommandant und Abenteurer, dass seine Armee beim Durchmarsch durch das heutige Nord-Kurdistan von den “Karduchoi” (Karduchen) angegriffen wurden. Die Berichte des Xenophon sind eine wichtige Quelle für die kurdische Geschichtsforschung. Der Bericht lässt schließen, dass es zu dieser Zeit eine Staatswesen im nördlichen Mesopotamien, also Nord-Kurdistan gab, das oberflächlich zum Persischen Reich gehörte. Dieses Staatswesen hat viele verschiedene Namen, die wahrscheinlich durch verschiedene Übersetzungen des gleichen Begriffes entstanden: Corduene, Cordyene, Cardyene, Gordyaea, Korduene, Korchayk und Giridyan. Der römisch Historiker Strabon verwendet die Bezeichnung Gordyene für die Berge zwischen Amed und Mush und erwähnt den Begriff “Kyrtii”.`,
           },
         ],
-        interactionData: combineData(baseInfo, dOrigin),
+        interactionData: dOrigin,
         interactionType: "filter",
       },
       {
@@ -177,7 +177,7 @@ const topics: topic[] = [
       },
       {
         title: "Osmanisches Reich",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dOttoman,
         interactionType: "timeline",
         content: [
           {

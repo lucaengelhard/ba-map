@@ -22,7 +22,6 @@ export default function Map({
 
   return (
     <div className="fixed inset-0">
-      {base ? <Mapbase /> : undefined}
       {typeof selected === "number" ? (
         <TimelineMap options={options} selected={selected} />
       ) : (
@@ -43,6 +42,7 @@ export default function Map({
           topic={topic}
         />
       </div>
+      {base ? <Mapbase /> : undefined}
     </div>
   );
 }
