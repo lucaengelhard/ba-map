@@ -189,7 +189,9 @@ function TimelineMap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, morphWorker]);
 
-  return <path fill={color} d={path}></path>;
+  return (
+    <path fill={color} d={path} style={{ transition: "fill 0.3s" }}></path>
+  );
 }
 
 function FilterMap({
