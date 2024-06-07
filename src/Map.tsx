@@ -128,11 +128,6 @@ function TimelineMap({ selected }: { selected: mapDataPoint }) {
   );
 
   useEffect(() => {
-    if (current.id === selected.id) {
-      console.log("No Difference");
-      return;
-    }
-
     morphWorker.postMessage({ current, selected });
     morphWorker.onmessage = (
       e: MessageEvent<{ finished: true; path: string }>
