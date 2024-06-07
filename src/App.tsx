@@ -18,7 +18,9 @@ function App() {
     () => currentTopic.chapters[currentChapterIndex],
     [currentChapterIndex, currentTopic.chapters]
   );
-  const [currentFilter, setCurrentFilter] = useState<number | number[]>(0);
+  const [currentFilter, setCurrentFilter] = useState<number | number[]>(
+    currentChapter.interactionData.map((option) => option.id)
+  );
 
   const mainUi = useRef<HTMLDivElement>(null);
 
@@ -31,8 +33,19 @@ function App() {
   }
 
   function onChapterChange(topicID: number, chapterIndex: number) {
-    setCurrenTopic(topicList.get(topicID));
+    const newTopic = topicList.get(topicID);
+    setCurrenTopic(newTopic);
     setCurrentChapterIndex(chapterIndex);
+
+    if (newTopic.chapters[chapterIndex].interactionType === "timeline") {
+      setCurrentFilter(0);
+    } else {
+      setCurrentFilter(
+        newTopic.chapters[chapterIndex].interactionData.map(
+          (option) => option.id
+        )
+      );
+    }
   }
 
   return (
@@ -56,6 +69,7 @@ function App() {
               />
             ) : (
               <Filter
+                selected={currentFilter as number[]}
                 onChange={onFilterChange}
                 options={
                   currentTopic.chapters[currentChapterIndex].interactionData

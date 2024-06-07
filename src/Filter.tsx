@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { mapDataPoint } from "./content/data";
 import { SideBarGrid, SideBarGridElement } from "./Nav";
 import { GridSizeContext } from "./App";
@@ -6,23 +6,20 @@ import { GridSizeContext } from "./App";
 export default function Filter({
   onChange,
   options,
+  selected,
 }: {
   options: mapDataPoint[];
   onChange: (selected: number[]) => void;
+  selected: number[];
 }) {
   const gridSize = useContext(GridSizeContext);
-  const [selected, setSelected] = useState(options.map((option) => option.id));
-
-  useEffect(() => onChange(selected), [onChange, selected]);
 
   function onFilterClick(index: number) {
-    setSelected((prev) => {
-      if (prev.includes(index)) {
-        return prev.filter((i) => i !== index);
-      } else {
-        return [...prev, index];
-      }
-    });
+    if (selected.includes(index)) {
+      onChange(selected.filter((i) => i !== index));
+    } else {
+      onChange([...selected, index]);
+    }
   }
 
   return (
