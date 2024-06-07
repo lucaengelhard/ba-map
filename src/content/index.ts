@@ -7,6 +7,7 @@ import { dOrigin } from "./dOrigin";
 import { dWorldWarToday } from "./dWorldWarToday";
 import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
+import { dFuerstentuemer } from "./dFuerstetuemer";
 
 const topics: topic[] = [
   {
@@ -145,8 +146,8 @@ const topics: topic[] = [
       },
       {
         title: "Kurdische Fürstentümer",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dFuerstentuemer,
+        interactionType: "filter",
         content: [
           {
             title: "Dynastien im Islamischen Reich",
