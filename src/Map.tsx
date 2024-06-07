@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
-import { interpolate } from "flubber";
+
 import { chapter, topic } from "./content";
 
 export default function Map({
@@ -119,33 +119,32 @@ function TimelineMap({ selected }: { selected: mapDataPoint }) {
     return selected.color;
   }, [selected.color]);
 
+  const morphWorker = useMemo(
+    () =>
+      new Worker(new URL("./workers/morph.ts", import.meta.url), {
+        type: "module",
+      }),
+    []
+  );
+
   useEffect(() => {
     if (current.id === selected.id) {
       console.log("No Difference");
       return;
     }
 
-    setTimeout(() => {
-      const interpolator = interpolate(current.path, selected.path);
-
-      const start = Date.now();
-
-      const duration = 1000;
-      const updateInterval = 20;
-
-      const interval = setInterval(() => {
-        const elapsed = Date.now() - start;
-        if (elapsed <= duration) {
-          setPath(interpolator(elapsed / duration));
-        } else {
-          setCurrent(selected);
-          clearInterval(interval);
-        }
-      }, updateInterval);
-    }, 1000);
+    morphWorker.postMessage({ current, selected });
+    morphWorker.onmessage = (
+      e: MessageEvent<{ finished: true; path: string }>
+    ) => {
+      setPath(e.data.path);
+      if (e.data.finished) {
+        setCurrent(selected);
+      }
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
+  }, [selected, morphWorker]);
 
   return (
     <div className="fixed inset-0">
