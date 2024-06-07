@@ -3,7 +3,6 @@ import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
 
 import { chapter, topic } from "./content";
-import MapMask from "./MapMask";
 
 export default function Map({
   selected,
@@ -28,22 +27,12 @@ export default function Map({
 
   return (
     <div className="fixed inset-0">
-      {" "}
-      <div className="fixed inset-0 w-full">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
-          <mask id="mapMask">
-            <MapMask />
-          </mask>
-          {/**<g mask="url(#mapMask)"> */}
-          <g mask="url(#mapMask)">
-            {typeof selected === "number" ? (
-              <TimelineMap selected={selectedOption ?? options[0]} />
-            ) : (
-              <FilterMap options={options} selected={selected} />
-            )}
-          </g>
-        </svg>
-      </div>
+      {typeof selected === "number" ? (
+        <TimelineMap selected={selectedOption ?? options[0]} />
+      ) : (
+        <FilterMap options={options} selected={selected} />
+      )}
+
       <div className="fixed h-screen w-screen inset-0">
         <MapInfo
           currentChapter={currentChapter}
@@ -152,7 +141,13 @@ function TimelineMap({ selected }: { selected: mapDataPoint }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, morphWorker]);
 
-  return <path fill={color} d={path}></path>;
+  return (
+    <div className="fixed inset-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+        <path fill={color} d={path}></path>
+      </svg>
+    </div>
+  );
 }
 
 function FilterMap({
@@ -163,22 +158,24 @@ function FilterMap({
   selected: number[];
 }) {
   return (
-    <>
-      {options.map((option) => (
-        <path
-          stroke={option.outline ? option.color ?? "grey" : "none"}
-          fill={!option.outline ? option.color : "none"}
-          style={{
-            opacity: selected.includes(option.id)
-              ? option.opacity !== undefined
-                ? option.opacity
-                : 0.5
-              : 0.01,
-            transition: "opacity 0.5s",
-          }}
-          d={option.path}
-        ></path>
-      ))}
-    </>
+    <div className="fixed inset-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+        {options.map((option) => (
+          <path
+            stroke={option.outline ? option.color ?? "grey" : "none"}
+            fill={!option.outline ? option.color : "none"}
+            style={{
+              opacity: selected.includes(option.id)
+                ? option.opacity !== undefined
+                  ? option.opacity
+                  : 0.5
+                : 0.01,
+              transition: "opacity 0.5s",
+            }}
+            d={option.path}
+          ></path>
+        ))}
+      </svg>
+    </div>
   );
 }
