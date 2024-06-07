@@ -34,7 +34,7 @@ export default function Nav({
               children={topic.title}
               onClick={() => onChange(topic.id, 0)}
               selected={currentTopic.id === topic.id}
-              key={tIndex}
+              key={topic.id + topic.title}
             />
 
             {currentTopic.id === topic.id &&
@@ -49,7 +49,7 @@ export default function Nav({
                     currentChapterIndex === cIndex
                   }
                   span={2}
-                  key={cIndex}
+                  key={topic.id + topic.title + cIndex + chapter.title}
                   className="text-2xl"
                 />
               ))}
