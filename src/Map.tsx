@@ -40,17 +40,25 @@ export default function Map({
           </mask>
           {/**<g mask="url(#mapMask)"> */}
           <g mask="url(#mapMask)">
-            {typeof selected === "number" ? (
-              <TimelineMap
-                selected={
-                  (selectedOption ?? options[0]) as
-                    | timelineDataPoint
-                    | dedicatedAnimationDataPoint
-                }
-              />
-            ) : (
-              <FilterMap options={options} selected={selected} />
+            {selectedOption?.mask && (
+              <mask id="optionMask">
+                <rect x="0" width="1920" height="1080" fill="#000" />
+                <path fill="#fff" d={selectedOption.mask}></path>
+              </mask>
             )}
+            <g mask={selectedOption?.mask && "url(#optionMask)"}>
+              {typeof selected === "number" ? (
+                <TimelineMap
+                  selected={
+                    (selectedOption ?? options[0]) as
+                      | timelineDataPoint
+                      | dedicatedAnimationDataPoint
+                  }
+                />
+              ) : (
+                <FilterMap options={options} selected={selected} />
+              )}
+            </g>
           </g>
         </svg>
       </div>

@@ -2,6 +2,7 @@ export type mapDataPoint = {
   id: number;
   title: string;
   path: string;
+  mask?: string;
   color?: string;
   opacity?: number;
   outline?: boolean;
