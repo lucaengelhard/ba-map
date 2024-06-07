@@ -5,13 +5,19 @@ type Tdata = {
   selected: mapDataPoint;
 };
 
+let path = "";
+
 self.onmessage = (e: MessageEvent<Tdata>) => {
-  const interpolator = interpolate(e.data.current.path, e.data.selected.path);
+  if (path.length === 0) {
+    path = e.data.current.path;
+  }
+
+  const interpolator = interpolate(path, e.data.selected.path);
 
   const start = Date.now();
   const duration = 1000;
   const updateInterval = 20;
-  let path = e.data.current.path;
+  path = e.data.current.path;
 
   const interval = setInterval(() => {
     const elapsed = Date.now() - start;
