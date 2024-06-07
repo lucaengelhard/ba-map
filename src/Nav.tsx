@@ -26,7 +26,7 @@ export default function Nav({
     <nav className="col-span-3">
       <SideBarGrid cellWidth={gridSize}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
-        {topicList.topics.map((topic, tIndex) => (
+        {topicList.topics.map((topic) => (
           <>
             <SideBarGridElement
               span={3}
