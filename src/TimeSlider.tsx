@@ -151,7 +151,10 @@ export default function TimeSlider({
             center={false}
             onClick={() => onOptionClick(option.id)}
           >
-            <div className="italic font-bold">{option.year}</div>
+            <div className="italic font-bold whitespace-nowrap">
+              {Math.abs(option.year)}
+              {option.year < 0 && " v.u.Z."}
+            </div>
             <div className="font-sans">{option.title}</div>
           </SideBarGridElement>
         ))}

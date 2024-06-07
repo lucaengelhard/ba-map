@@ -1,15 +1,12 @@
-import {
-  combineData,
-  dOrigin,
-  dOttoman,
-  gebieteGrenzenbisHeute,
-  grenzenHeute,
-  mapDataPoint,
-  timelineDataPoint,
-} from "./data";
+import { combineData, mapDataPoint, timelineDataPoint } from "./data";
 import newroz1 from "/images/20240323-ba-newroz-012.jpg";
 import zeitungkurdistan from "/images/Kurdistan_newspaper_1898.jpeg";
 import mahbadflag from "/images/Flag_of_the_Republic_of_Mahabad.svg";
+import { dOttoman } from "./dOttoman";
+import { dOrigin } from "./dOrigin";
+import { dWorldWarToday } from "./dWorldWarToday";
+import { dToday } from "./dToday";
+import { dEmpires } from "./dEmpires";
 
 const topics: topic[] = [
   {
@@ -89,7 +86,7 @@ const topics: topic[] = [
       },
       {
         title: "Beherrscht",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dEmpires,
         interactionType: "timeline",
         content: [
           {
@@ -148,7 +145,7 @@ const topics: topic[] = [
       },
       {
         title: "Kurdische Fürstentümer",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [
           {
@@ -235,7 +232,7 @@ const topics: topic[] = [
       },
       {
         title: "Erster Weltkrieg bis heute",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [
           {
@@ -406,7 +403,7 @@ const topics: topic[] = [
             content: `Seit September 2022 gibt es wieder Massenproteste im Iran. Ausgelöst wurden sie durch den Mord der kurdischen Iranerin Jina Mahsa Amini durch iranische Polizisten. Der kurdische Ausspruch “Jin, Jiyan, Azadî” (Frauen, Leben, Freiheit) wurde zu einem der Hauptparolen der Proteste und erlangte so neue weltweite Bekanntheit, nachdem er ursprünglich ein Slogan der PKK war und auch im Kontext mit Rojava oft verwendet wird`,
           },
         ],
-        interactionData: grenzenHeute,
+        interactionData: dToday,
         interactionType: "filter",
       },
     ],
@@ -417,25 +414,25 @@ const topics: topic[] = [
     chapters: [
       {
         title: "Lebensstandard",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Bevölkerungsanteil",
-        interactionData: combineData(grenzenHeute, gebieteGrenzenbisHeute),
+        interactionData: combineData(dToday, dWorldWarToday),
         interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Sprache",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Religion",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
@@ -447,19 +444,19 @@ const topics: topic[] = [
     chapters: [
       {
         title: "Verbote",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Genozide",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Widerstand",
-        interactionData: gebieteGrenzenbisHeute,
+        interactionData: dWorldWarToday,
         interactionType: "timeline",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
