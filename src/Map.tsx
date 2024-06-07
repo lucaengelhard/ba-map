@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import Mapbase from "./Mapbase";
-import { mapDataPoint } from "./content/data";
+import {
+  dedicatedAnimationDataPoint,
+  mapDataPoint,
+  timelineDataPoint,
+} from "./content/data";
 
 import { chapter, topic } from "./content";
 import MapMask from "./MapMask";
@@ -37,7 +41,13 @@ export default function Map({
           {/**<g mask="url(#mapMask)"> */}
           <g mask="url(#mapMask)">
             {typeof selected === "number" ? (
-              <TimelineMap selected={selectedOption ?? options[0]} />
+              <TimelineMap
+                selected={
+                  (selectedOption ?? options[0]) as
+                    | timelineDataPoint
+                    | dedicatedAnimationDataPoint
+                }
+              />
             ) : (
               <FilterMap options={options} selected={selected} />
             )}
@@ -123,7 +133,11 @@ function MapInfoElement({
   );
 }
 
-function TimelineMap({ selected }: { selected: mapDataPoint }) {
+function TimelineMap({
+  selected,
+}: {
+  selected: timelineDataPoint | dedicatedAnimationDataPoint;
+}) {
   const [current, setCurrent] = useState(selected);
   const [path, setPath] = useState(current.path);
   const color = useMemo(() => {
@@ -146,6 +160,21 @@ function TimelineMap({ selected }: { selected: mapDataPoint }) {
       setPath(e.data.path);
       if (e.data.finished) {
         setCurrent(selected);
+        morphWorker.onmessage = null;
+        if ("target" in selected) {
+          morphWorker.postMessage({
+            current: selected,
+            selected: selected.target,
+          });
+          morphWorker.onmessage = (
+            e2: MessageEvent<{ finished: true; path: string }>
+          ) => {
+            setPath(e2.data.path);
+            if (e2.data.finished) {
+              setCurrent(selected);
+            }
+          };
+        }
       }
     };
 

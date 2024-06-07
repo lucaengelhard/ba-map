@@ -9,6 +9,11 @@ export type mapDataPoint = {
 
 export type timelineDataPoint = mapDataPoint & { year: number };
 
+export type dedicatedAnimationDataPoint = timelineDataPoint & {
+  path: string;
+  target: mapDataPoint;
+};
+
 export type interactionData = mapDataPoint | timelineDataPoint;
 
 export function combineData(
