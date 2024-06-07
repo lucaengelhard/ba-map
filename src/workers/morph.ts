@@ -6,8 +6,11 @@ type Tdata = {
 };
 
 let path = "";
+let instances = 0;
 
 self.onmessage = (e: MessageEvent<Tdata>) => {
+  instances++;
+  const index = instances;
   if (path.length === 0) {
     path = e.data.current.path;
   }
@@ -20,6 +23,10 @@ self.onmessage = (e: MessageEvent<Tdata>) => {
   path = e.data.current.path;
 
   const interval = setInterval(() => {
+    if (instances > index) {
+      clearInterval(interval);
+      return;
+    }
     const elapsed = Date.now() - start;
     if (elapsed <= duration) {
       path = interpolator(elapsed / duration);
