@@ -26,6 +26,7 @@ self.onmessage = (e: MessageEvent<Tdata>) => {
       self.postMessage({ finished: false, path });
     } else {
       clearInterval(interval);
+      path = interpolator(1);
       self.postMessage({ finished: true, path });
     }
   }, updateInterval);
