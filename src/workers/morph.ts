@@ -1,8 +1,11 @@
-import { mapDataPoint } from "../content/data";
+import {
+  dedicatedAnimationDataPoint,
+  timelineDataPoint,
+} from "../content/data";
 import { interpolate } from "flubber";
 type Tdata = {
-  current: mapDataPoint;
-  selected: mapDataPoint;
+  current: timelineDataPoint | dedicatedAnimationDataPoint;
+  selected: timelineDataPoint | dedicatedAnimationDataPoint;
 };
 
 let path = "";
@@ -18,7 +21,7 @@ self.onmessage = (e: MessageEvent<Tdata>) => {
   const interpolator = interpolate(path, e.data.selected.path);
 
   const start = Date.now();
-  const duration = 1000;
+  const duration = "target" in e.data.selected ? 0 : 2000;
   const updateInterval = 20;
   path = e.data.current.path;
 

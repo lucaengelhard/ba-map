@@ -2,12 +2,18 @@ export type mapDataPoint = {
   id: number;
   title: string;
   path: string;
+  mask?: string;
   color?: string;
   opacity?: number;
   outline?: boolean;
 };
 
 export type timelineDataPoint = mapDataPoint & { year: number };
+
+export type dedicatedAnimationDataPoint = timelineDataPoint & {
+  path: string;
+  target: mapDataPoint;
+};
 
 export type interactionData = mapDataPoint | timelineDataPoint;
 

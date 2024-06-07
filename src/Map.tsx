@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import Mapbase from "./Mapbase";
-import { mapDataPoint } from "./content/data";
+import {
+  dedicatedAnimationDataPoint,
+  mapDataPoint,
+  timelineDataPoint,
+} from "./content/data";
 
 import { chapter, topic } from "./content";
 import MapMask from "./MapMask";
@@ -36,11 +40,25 @@ export default function Map({
           </mask>
           {/**<g mask="url(#mapMask)"> */}
           <g mask="url(#mapMask)">
-            {typeof selected === "number" ? (
-              <TimelineMap selected={selectedOption ?? options[0]} />
-            ) : (
-              <FilterMap options={options} selected={selected} />
+            {selectedOption?.mask && (
+              <mask id="optionMask">
+                <rect x="0" width="1920" height="1080" fill="#000" />
+                <path fill="#fff" d={selectedOption.mask}></path>
+              </mask>
             )}
+            <g mask={selectedOption?.mask && "url(#optionMask)"}>
+              {typeof selected === "number" ? (
+                <TimelineMap
+                  selected={
+                    (selectedOption ?? options[0]) as
+                      | timelineDataPoint
+                      | dedicatedAnimationDataPoint
+                  }
+                />
+              ) : (
+                <FilterMap options={options} selected={selected} />
+              )}
+            </g>
           </g>
         </svg>
       </div>
@@ -123,7 +141,11 @@ function MapInfoElement({
   );
 }
 
-function TimelineMap({ selected }: { selected: mapDataPoint }) {
+function TimelineMap({
+  selected,
+}: {
+  selected: timelineDataPoint | dedicatedAnimationDataPoint;
+}) {
   const [current, setCurrent] = useState(selected);
   const [path, setPath] = useState(current.path);
   const color = useMemo(() => {
@@ -146,13 +168,30 @@ function TimelineMap({ selected }: { selected: mapDataPoint }) {
       setPath(e.data.path);
       if (e.data.finished) {
         setCurrent(selected);
+        morphWorker.onmessage = null;
+        if ("target" in selected) {
+          morphWorker.postMessage({
+            current: selected,
+            selected: selected.target,
+          });
+          morphWorker.onmessage = (
+            e2: MessageEvent<{ finished: true; path: string }>
+          ) => {
+            setPath(e2.data.path);
+            if (e2.data.finished) {
+              setCurrent(selected);
+            }
+          };
+        }
       }
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, morphWorker]);
 
-  return <path fill={color} d={path}></path>;
+  return (
+    <path fill={color} d={path} style={{ transition: "fill 0.3s" }}></path>
+  );
 }
 
 function FilterMap({
