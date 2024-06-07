@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Mapbase from "./Mapbase";
 import { mapDataPoint } from "./content/data";
 import { interpolate } from "flubber";
@@ -20,10 +20,15 @@ export default function Map({
     [currentChapter.interactionData]
   );
 
+  const selectedOption = useMemo(() => {
+    if (typeof selected !== "number") return;
+    return options.find((option) => option.id === selected) ?? options[0];
+  }, [options, selected]);
+
   return (
     <div className="fixed inset-0">
       {typeof selected === "number" ? (
-        <TimelineMap options={options} selected={selected} />
+        <TimelineMap selected={selectedOption ?? options[0]} />
       ) : (
         <FilterMap options={options} selected={selected} />
       )}
@@ -107,61 +112,40 @@ function MapInfoElement({
   );
 }
 
-function TimelineMap({
-  options,
-  selected,
-}: {
-  options: mapDataPoint[];
-  selected: number;
-}) {
-  const getOption = useCallback(
-    (id: number) => {
-      return options.find((option) => option.id === id) ?? options[0];
-    },
-    [options]
-  );
-
-  const [current, setCurrent] = useState(getOption(selected));
+function TimelineMap({ selected }: { selected: mapDataPoint }) {
+  const [current, setCurrent] = useState(selected);
   const [path, setPath] = useState(current.path);
-  const [color, setColor] = useState<string>();
+  const color = useMemo(() => {
+    return selected.color;
+  }, [selected.color]);
 
   useEffect(() => {
-    const interval = morph(current, getOption(selected), 1000, 20);
-    return () => clearInterval(interval);
-  }, [current, getOption, options, selected]);
+    if (current.id === selected.id) {
+      console.log("No Difference");
+      return;
+    }
 
-  function morph(
-    currentObj: mapDataPoint,
-    targetObj: mapDataPoint,
-    duration: number,
-    updateInterval: number
-  ) {
-    if (targetObj === undefined) return;
+    setTimeout(() => {
+      const interpolator = interpolate(current.path, selected.path);
 
-    const currentPath = currentObj.path;
+      const start = Date.now();
 
-    const targetPath = targetObj.path;
+      const duration = 1000;
+      const updateInterval = 20;
 
-    if (currentPath === targetPath) return;
+      const interval = setInterval(() => {
+        const elapsed = Date.now() - start;
+        if (elapsed <= duration) {
+          setPath(interpolator(elapsed / duration));
+        } else {
+          setCurrent(selected);
+          clearInterval(interval);
+        }
+      }, updateInterval);
+    }, 1000);
 
-    const interpolator = interpolate(currentPath, targetPath);
-    console.log("interpolator created");
-    const start = Date.now();
-    setColor(targetObj.color);
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - start;
-      if (elapsed < duration) {
-        setPath(interpolator(elapsed / duration));
-      } else {
-        setCurrent(targetObj);
-        setPath(targetObj.path);
-
-        clearInterval(interval);
-      }
-    }, updateInterval);
-
-    return interval;
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
 
   return (
     <div className="fixed inset-0">
