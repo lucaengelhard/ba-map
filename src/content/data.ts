@@ -7,7 +7,7 @@ export type mapDataPoint = {
   outline?: boolean;
 };
 
-export type timelineDataPoint = mapDataPoint & { year: number };
+export type timelineDataPoint = mapDataPoint & { year: number; layer?: number };
 
 export type interactionData = mapDataPoint | timelineDataPoint;
 
