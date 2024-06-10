@@ -3,6 +3,7 @@ import { timelineDataPoint } from "./content/data";
 import Sonne from "./assets/icons/Sonne";
 import { SideBarGrid, SideBarGridElement } from "./Nav";
 import { GridSizeContext } from "./App";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function TimeSlider({
   options,
@@ -168,7 +169,17 @@ export default function TimeSlider({
             ref={sliderRef}
             className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
           >
-            <Sonne fill="#E74322" />
+            <div className="relative">
+              {selected !== 0 && (
+                <>
+                  <ChevronUp className="absolute w-full -top-12 h-14 stroke-white stroke-5" />
+                  <ChevronUp className="absolute w-full -top-12 h-14 stroke-main-600" />
+                </>
+              )}
+              <Sonne className="fill-main-600" />
+              <ChevronDown className="absolute w-full -bottom-12 h-14 stroke-white stroke-5" />
+              <ChevronDown className="absolute w-full -bottom-12 h-14 stroke-main-600" />
+            </div>
           </div>
           <div className="h-full"></div>
         </div>

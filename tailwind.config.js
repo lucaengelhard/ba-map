@@ -37,6 +37,10 @@ export default {
         },
         grey: "#D7D0CF",
       },
+      strokeWidth: {
+        3: "3px",
+        5: "5px",
+      },
     },
   },
   plugins: [],
