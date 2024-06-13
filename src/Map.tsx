@@ -41,12 +41,12 @@ export default function Map({
           {/**<g mask="url(#mapMask)"> */}
           <g mask="url(#mapMask)">
             {selectedOption?.mask && (
-              <mask id="optionMask">
+              <mask id="mainMask">
                 <rect x="0" width="1920" height="1080" fill="#000" />
                 <path fill="#fff" d={selectedOption.mask}></path>
               </mask>
             )}
-            <g mask={selectedOption?.mask && "url(#optionMask)"}>
+            <g>
               {typeof selected === "number" ? (
                 <TimelineMap
                   selected={
@@ -69,13 +69,15 @@ export default function Map({
           topic={topic}
         />
       </div>
-      <div className="fixed h-screen w-screen inset-0 rotate-180">
-        <MapInfo
-          currentChapter={currentChapter}
-          selected={selected}
-          topic={topic}
-        />
-      </div>
+      <div
+        className="fixed bg-main-600"
+        style={{
+          top: "3rem",
+          right: "3rem",
+          width: "22rem",
+          aspectRatio: "16/9",
+        }}
+      ></div>
       {base ? <Mapbase /> : undefined}
     </div>
   );
@@ -190,7 +192,19 @@ function TimelineMap({
   }, [selected, morphWorker]);
 
   return (
-    <path fill={color} d={path} style={{ transition: "fill 0.3s" }}></path>
+    <>
+      {"background" in selected && (
+        <path d={selected.background} fill={selected.backgroundColor}></path>
+      )}
+      <path
+        mask={selected.mask && "url(#mainMask)"}
+        stroke={selected.outlineColor ? selected.outlineColor : selected.color}
+        strokeWidth={selected.outline}
+        fill={color}
+        d={path}
+        style={{ transition: "fill 0.3s" }}
+      ></path>
+    </>
   );
 }
 
@@ -205,8 +219,9 @@ function FilterMap({
     <>
       {options.map((option) => (
         <path
-          stroke={option.outline ? option.color ?? "grey" : "none"}
-          fill={!option.outline ? option.color : "none"}
+          stroke={option.outlineColor ? option.outlineColor : option.color}
+          strokeWidth={option.outline}
+          fill={option.color}
           style={{
             opacity: selected.includes(option.id)
               ? option.opacity !== undefined

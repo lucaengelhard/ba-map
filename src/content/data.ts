@@ -5,7 +5,8 @@ export type mapDataPoint = {
   mask?: string;
   color?: string;
   opacity?: number;
-  outline?: boolean;
+  outline?: number;
+  outlineColor?: string;
 };
 
 export type timelineDataPoint = mapDataPoint & { year: number };
@@ -13,6 +14,8 @@ export type timelineDataPoint = mapDataPoint & { year: number };
 export type dedicatedAnimationDataPoint = timelineDataPoint & {
   path: string;
   target: mapDataPoint;
+  background?: string;
+  backgroundColor?: string;
 };
 
 export type interactionData = mapDataPoint | timelineDataPoint;
