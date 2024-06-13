@@ -1,17 +1,24 @@
 import { SVGProps } from "react";
 const MapBase = (props: SVGProps<SVGSVGElement>) => (
   <>
-    <div style={{ position: "fixed", top: "21rem", left: "22rem" }}>Türkei</div>
-    <div style={{ position: "fixed", top: "36rem", left: "41.5rem" }}>
+    <div style={{ position: "absolute", top: "21rem", left: "22rem" }}>
+      Türkei
+    </div>
+    <div style={{ position: "absolute", top: "36rem", left: "41.5rem" }}>
       Syrien
     </div>
-    <div style={{ position: "fixed", top: "49rem", left: "62rem" }}>Irak</div>
-    <div style={{ position: "fixed", top: "34rem", left: "93rem" }}>Iran</div>
+    <div style={{ position: "absolute", top: "49rem", left: "62rem" }}>
+      Irak
+    </div>
+    <div style={{ position: "absolute", top: "34rem", left: "93rem" }}>
+      Iran
+    </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="Pfade"
       viewBox="0 0 1920 1080"
       {...props}
+      className="absolute top-0 left-0 z-50"
     >
       <defs>
         <style>
