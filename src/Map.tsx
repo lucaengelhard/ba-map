@@ -8,6 +8,7 @@ import {
 
 import { chapter, topic } from "./content";
 import MapMask from "./MapMask";
+import ContextMap from "./ContextMap";
 
 export default function Map({
   selected,
@@ -31,7 +32,7 @@ export default function Map({
   }, [options, selected]);
 
   return (
-    <div className="fixed inset-0">
+    <div className="fixed inset-0 bg-white">
       {" "}
       <div className="fixed inset-0 w-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
@@ -70,14 +71,16 @@ export default function Map({
         />
       </div>
       <div
-        className="fixed bg-main-600"
+        className="fixed border-main-600 border"
         style={{
-          top: "3rem",
-          right: "3rem",
+          top: "4rem",
+          right: "4rem",
           width: "22rem",
           aspectRatio: "16/9",
         }}
-      ></div>
+      >
+        <ContextMap className="w-full h-full" />
+      </div>
       {base ? <Mapbase /> : undefined}
     </div>
   );
