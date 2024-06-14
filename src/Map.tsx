@@ -47,6 +47,25 @@ export default function Map({
                 <path fill="#fff" d={selectedOption.mask}></path>
               </mask>
             )}
+            {currentChapter.background && (
+              <g>
+                <path
+                  stroke={
+                    currentChapter.backgroundOutline
+                      ? currentChapter.backgroundColor
+                      : undefined
+                  }
+                  strokeWidth={currentChapter.backgroundOutline}
+                  fill={
+                    !currentChapter.backgroundOutline
+                      ? currentChapter.backgroundColor
+                      : "transparent"
+                  }
+                  opacity={currentChapter.backgroundOpacity}
+                  d={currentChapter.background}
+                ></path>
+              </g>
+            )}
             <g>
               {typeof selected === "number" ? (
                 <TimelineMap

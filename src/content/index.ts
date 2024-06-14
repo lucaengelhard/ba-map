@@ -9,6 +9,7 @@ import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
 import { dFuerstentuemer } from "./dFuerstetuemer";
 import { dDemography } from "./dDemography";
+import { pLivingArea } from "./paths/pArea";
 
 const topics: topic[] = [
   {
@@ -178,6 +179,9 @@ const topics: topic[] = [
         title: "Osmanisches Reich",
         interactionData: dOttoman,
         interactionType: "timeline",
+        background: pLivingArea,
+        backgroundColor: "blue",
+        backgroundOpacity: 1,
         content: [
           {
             type: "text",
@@ -236,6 +240,10 @@ const topics: topic[] = [
         title: "Erster Weltkrieg bis heute",
         interactionData: dWorldWarToday,
         interactionType: "timeline",
+        background: pLivingArea,
+        backgroundColor: "blue",
+        backgroundOpacity: 1,
+        backgroundOutline: 1,
         content: [
           {
             type: "text",
@@ -472,19 +480,26 @@ export type chapterContent = {
   content: string;
 };
 
-export type chapter =
-  | {
-      title: string;
-      content: chapterContent[];
-      interactionData: mapDataPoint[];
-      interactionType: "filter";
-    }
-  | {
-      title: string;
-      content: chapterContent[];
-      interactionData: timelineDataPoint[];
-      interactionType: "timeline";
-    };
+type chapterBase = {
+  title: string;
+  content: chapterContent[];
+  background?: string;
+  backgroundColor?: string;
+  backgroundOpacity?: number;
+  backgroundOutline?: number;
+};
+
+type filterChapter = chapterBase & {
+  interactionData: mapDataPoint[];
+  interactionType: "filter";
+};
+
+type timelineChapter = chapterBase & {
+  interactionData: timelineDataPoint[];
+  interactionType: "timeline";
+};
+
+export type chapter = filterChapter | timelineChapter;
 
 export type topic = {
   id: number;
