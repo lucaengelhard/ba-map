@@ -1,4 +1,4 @@
-import { combineData, mapDataPoint, timelineDataPoint } from "./data";
+import { mapDataPoint, timelineDataPoint } from "./data";
 import newroz1 from "/images/20240323-ba-newroz-012.jpg";
 import zeitungkurdistan from "/images/Kurdistan_newspaper_1898.jpeg";
 import mahbadflag from "/images/Flag_of_the_Republic_of_Mahabad.svg";
@@ -8,6 +8,7 @@ import { dWorldWarToday } from "./dWorldWarToday";
 import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
 import { dFuerstentuemer } from "./dFuerstetuemer";
+import { dDemography } from "./dDemography";
 
 const topics: topic[] = [
   {
@@ -421,7 +422,7 @@ const topics: topic[] = [
       },
       {
         title: "Bevölkerungsanteil",
-        interactionData: combineData(dToday, dWorldWarToday),
+        interactionData: dDemography,
         interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
