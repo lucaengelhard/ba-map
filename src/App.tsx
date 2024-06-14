@@ -74,6 +74,7 @@ function App() {
                 options={
                   currentTopic.chapters[currentChapterIndex].interactionData
                 }
+                currentChapter={currentChapter}
               />
             )}
           </aside>

@@ -150,6 +150,11 @@ const topics: topic[] = [
         title: "Kurdische Fürstentümer",
         interactionData: dFuerstentuemer,
         interactionType: "filter",
+        background: pLivingArea,
+        backgroundColor: "blue",
+        backgroundOpacity: 1,
+        backgroundOutline: 1,
+        small: true,
         content: [
           {
             title: "Dynastien im Islamischen Reich",
@@ -487,6 +492,7 @@ type chapterBase = {
   backgroundColor?: string;
   backgroundOpacity?: number;
   backgroundOutline?: number;
+  small?: boolean;
 };
 
 type filterChapter = chapterBase & {
