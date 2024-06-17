@@ -121,7 +121,13 @@ function MapInfo({
   return (
     <div
       className="p-4 absolute my-4"
-      style={{ top: "45rem", left: "8.5rem", backgroundColor: "white" }}
+      style={{
+        top: "45.5rem",
+        left: "8.7rem",
+        backgroundColor: "white",
+        height: "30rem",
+        width: "42rem",
+      }}
     >
       <h1 className="font-bold text-main-600" style={{ fontSize: "3rem" }}>
         {topic.title}
