@@ -21,7 +21,10 @@ export default function Chapters({
   }, [topic, chapterIndex]);
 
   return (
-    <main className="col-span-5 h-screen overflow-x-hidden relative">
+    <main
+      className="h-screen overflow-x-hidden relative w-full"
+      style={{ maxWidth: "45%" }}
+    >
       <h1
         className="text-main-600 text-3xl sticky top-0 bg-white  border border-main-300 flex items-center p-2 gap-4"
         style={{

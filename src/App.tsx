@@ -12,6 +12,7 @@ import Filter from "./Filter";
 export const GridSizeContext = createContext(40);
 
 function App() {
+  const gridSize = 40;
   const [currentTopic, setCurrenTopic] = useState(topicList.get(0));
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
   const currentChapter = useMemo(
@@ -50,10 +51,10 @@ function App() {
 
   return (
     <>
-      <GridSizeContext.Provider value={40}>
+      <GridSizeContext.Provider value={gridSize}>
         <div
           ref={mainUi}
-          className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden select-none"
+          className="flex text-black w-screen h-screen overflow-hidden select-none"
         >
           <Nav
             onChange={onChapterChange}
@@ -61,7 +62,7 @@ function App() {
             currentTopic={currentTopic}
           />
           <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
-          <aside className="col-span-4">
+          <aside style={{ width: `${10 * gridSize}px` }} className="shrink-0">
             {currentChapter.interactionType === "timeline" ? (
               <TimeSlider
                 options={currentChapter.interactionData}
@@ -79,6 +80,7 @@ function App() {
             )}
           </aside>
         </div>
+        {/**
         <NewWindow features={{ width: 1920, height: 1080 }}>
           <Map
             base
@@ -86,7 +88,7 @@ function App() {
             topic={currentTopic}
             selected={currentFilter}
           />
-        </NewWindow>{" "}
+        </NewWindow>{" "} */}
       </GridSizeContext.Provider>
     </>
   );

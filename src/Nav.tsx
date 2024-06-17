@@ -23,7 +23,7 @@ export default function Nav({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <nav className="col-span-3">
+    <nav style={{ width: `${10 * gridSize}px` }} className="shrink-0">
       <SideBarGrid cellWidth={gridSize}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic) => (
