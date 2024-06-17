@@ -94,7 +94,7 @@ export default function Map({
         />
       </div>
       <div
-        className="fixed border-main-600 border"
+        className="fixed"
         style={{
           top: "4rem",
           right: "6rem",
