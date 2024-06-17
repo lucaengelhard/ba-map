@@ -97,9 +97,9 @@ export default function Map({
         className="fixed border-main-600 border"
         style={{
           top: "4rem",
-          right: "4rem",
-          width: "22rem",
-          aspectRatio: "16/9",
+          right: "6rem",
+          width: "23.5rem",
+          height: "13.5rem",
         }}
       >
         <ContextMap className="w-full h-full" />
