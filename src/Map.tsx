@@ -32,7 +32,10 @@ export default function Map({
   }, [options, selected]);
 
   return (
-    <div className="fixed inset-0 bg-white rotate-180">
+    <div
+      className="fixed inset-0 bg-white rotate-180"
+      style={{ backgroundColor: "black" }}
+    >
       {" "}
       <div className="fixed inset-0 w-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
@@ -47,6 +50,7 @@ export default function Map({
                 <path fill="#fff" d={selectedOption.mask}></path>
               </mask>
             )}
+            <rect x="0" width="1920" height="1080" fill="white" />
             {currentChapter.background && (
               <g>
                 <path
@@ -115,7 +119,10 @@ function MapInfo({
   selected: number | number[];
 }) {
   return (
-    <div className="p-4 absolute my-4" style={{ top: "45rem", left: "8.5rem" }}>
+    <div
+      className="p-4 absolute my-4"
+      style={{ top: "45rem", left: "8.5rem", backgroundColor: "white" }}
+    >
       <h1 className="font-bold text-main-600" style={{ fontSize: "3rem" }}>
         {topic.title}
       </h1>

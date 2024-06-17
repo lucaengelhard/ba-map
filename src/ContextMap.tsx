@@ -20,7 +20,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
         <path
           d="M0 0h40v40H0z"
           style={{
-            fill: "none",
+            fill: "white",
             strokeWidth: 0,
           }}
         />
