@@ -187,6 +187,7 @@ const topics: topic[] = [
         background: pLivingArea,
         backgroundColor: "blue",
         backgroundOpacity: 1,
+        backgroundOutline: 1,
         content: [
           {
             type: "text",

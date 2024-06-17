@@ -53,7 +53,7 @@ export const dFuerstentuemer: mapDataPoint[] = [
     id: 5,
     outline: 2,
     outlineColor: "#e74322",
-    title: "Hakkrai",
+    title: "Hakkari",
     path: pHakkari,
   },
   {

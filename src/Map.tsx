@@ -115,30 +115,42 @@ function MapInfo({
   selected: number | number[];
 }) {
   return (
-    <div className="p-4  absolute top-2/3 m-4">
-      <h1 className="text-[2rem] font-bold text-main-600">{topic.title}</h1>
-      <h2 className="text-main-600 ">{currentChapter.title}</h2>
-      {typeof selected !== "number" ? (
-        currentChapter.interactionData.map((el, index) => (
-          <MapInfoElement
-            key={index}
-            datapoint={el}
-            selected={selected.includes(el.id)}
-          />
-        ))
-      ) : (
-        <div
-          style={{
-            maxWidth: "20vw",
-          }}
-        >
-          {
-            currentChapter.interactionData.find(
-              (point) => point.id === selected
-            )?.title
-          }
-        </div>
-      )}
+    <div className="p-4 absolute my-4" style={{ top: "45rem", left: "8.5rem" }}>
+      <h1 className="font-bold text-main-600" style={{ fontSize: "3rem" }}>
+        {topic.title}
+      </h1>
+      <h2 className="text-main-600 text-[2rem]">{currentChapter.title}</h2>
+      <div style={{ fontSize: "2rem" }}>
+        {typeof selected !== "number" ? (
+          <div
+            style={{
+              display: currentChapter.small ? "grid" : undefined,
+              gridTemplateColumns: "1fr 1fr",
+              marginTop: "0.5rem",
+            }}
+          >
+            {currentChapter.interactionData.map((el, index) => (
+              <MapInfoElement
+                key={index}
+                datapoint={el}
+                selected={selected.includes(el.id)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              maxWidth: "20vw",
+            }}
+          >
+            {
+              currentChapter.interactionData.find(
+                (point) => point.id === selected
+              )?.title
+            }
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -158,9 +170,20 @@ function MapInfoElement({
         whiteSpace: "nowrap",
         overflow: "clip",
         textOverflow: "ellipsis",
+        display: "grid",
+        gridTemplateColumns: "1.5rem 1fr",
+        marginBottom: "0.5rem",
+        gap: "0.5rem",
+        alignItems: "center",
       }}
     >
-      {datapoint.title}
+      <div
+        style={{
+          aspectRatio: "1/1",
+          backgroundColor: datapoint.color ?? "grey",
+        }}
+      ></div>
+      <div>{datapoint.title}</div>
     </div>
   );
 }
