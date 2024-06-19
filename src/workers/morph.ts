@@ -21,7 +21,7 @@ self.onmessage = (e: MessageEvent<Tdata>) => {
   const interpolator = interpolate(path, e.data.selected.path);
 
   const start = Date.now();
-  const duration = "target" in e.data.selected ? 0 : 2000;
+  const duration = "target" in e.data.selected ? 0 : 1000;
   const updateInterval = 20;
   path = e.data.current.path;
 
