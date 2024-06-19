@@ -122,18 +122,21 @@ function MapInfo({
     <div
       className="p-4 absolute my-4"
       style={{
-        top: "45.5rem",
+        paddingLeft: "1.5rem",
+        top: "49.5rem",
         left: "8.7rem",
         backgroundColor: "white",
         height: "30rem",
-        width: "42rem",
+        width: "36rem",
       }}
     >
-      <h1 className="font-bold text-main-600" style={{ fontSize: "3rem" }}>
+      <h1 className="font-bold text-main-600" style={{ fontSize: "2rem" }}>
         {topic.title}
       </h1>
-      <h2 className="text-main-600 text-[2rem]">{currentChapter.title}</h2>
-      <div style={{ fontSize: "2rem" }}>
+      <h2 className="text-main-600" style={{ fontSize: "2rem" }}>
+        {currentChapter.title}
+      </h2>
+      <div style={{ fontSize: "1.5rem" }}>
         {typeof selected !== "number" ? (
           <div
             style={{
