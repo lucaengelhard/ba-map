@@ -35,6 +35,7 @@ export default function Filter({
               <>
                 {isEven(index) && (
                   <div
+                    key={option.id + option.title}
                     style={{ gridColumn: "1 / -1", gridRow: "span 1" }}
                   ></div>
                 )}
@@ -43,7 +44,7 @@ export default function Filter({
               <div style={{ gridColumn: "1 / -1", gridRow: "span 1" }}></div>
             )}
             <SideBarGridElement
-              key={index}
+              key={option.id + option.title}
               className=""
               selected={selected.includes(option.id)}
               span={2}

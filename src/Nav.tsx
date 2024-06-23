@@ -23,7 +23,7 @@ export default function Nav({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <nav className="col-span-3">
+    <nav className="col-span-3" key={"NavContainer"}>
       <SideBarGrid cellWidth={gridSize}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic) => (
@@ -53,7 +53,10 @@ export default function Nav({
                   className="text-2xl"
                 />
               ))}
-            <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
+            <div
+              key={topic.id + topic.title + "spacer"}
+              style={{ gridColumn: "2 / -2", gridRow: "span 1" }}
+            ></div>
           </>
         ))}
       </SideBarGrid>
