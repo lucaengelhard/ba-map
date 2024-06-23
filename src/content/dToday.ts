@@ -22,7 +22,7 @@ export const dToday: mapDataPoint[] = [
     id: 1,
     title: "Heutiges irakisches Gebiet unter kurdischer Kontrolle",
     path: pTodayIraq,
-    color: "#42424",
+    color: "#424242",
     opacity: 0.8,
   },
   {
