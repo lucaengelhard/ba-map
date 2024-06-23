@@ -8,6 +8,7 @@ export type mapDataPoint = {
   outline?: number;
   outlineColor?: string;
   icon?: string;
+  iconViewbox?: string;
 };
 
 export type timelineDataPoint = mapDataPoint & { year: number };

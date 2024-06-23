@@ -182,10 +182,6 @@ function MapInfoElement({
     <div
       style={{
         opacity: selected ? 1 : 0.5,
-        maxWidth: "20vw",
-        whiteSpace: "nowrap",
-        overflow: "clip",
-        textOverflow: "ellipsis",
         display: "grid",
         gridTemplateColumns: "1.5rem 1fr",
         marginBottom: "0.5rem",
@@ -193,13 +189,27 @@ function MapInfoElement({
         alignItems: "center",
       }}
     >
-      <div
-        style={{
-          aspectRatio: "1/1",
-          backgroundColor: datapoint.color ?? "grey",
-          opacity: datapoint.opacity,
-        }}
-      ></div>
+      {datapoint.icon ? (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            opacity: datapoint.opacity,
+          }}
+        >
+          {" "}
+          <svg viewBox={datapoint.iconViewbox}>
+            <path d={datapoint.icon} fill={datapoint.color} />
+          </svg>{" "}
+        </div>
+      ) : (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            backgroundColor: datapoint.color ?? "grey",
+            opacity: datapoint.opacity,
+          }}
+        ></div>
+      )}
       <div>{datapoint.title}</div>
     </div>
   );
