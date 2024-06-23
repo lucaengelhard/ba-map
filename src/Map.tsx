@@ -197,6 +197,7 @@ function MapInfoElement({
         style={{
           aspectRatio: "1/1",
           backgroundColor: datapoint.color ?? "grey",
+          opacity: datapoint.opacity,
         }}
       ></div>
       <div>{datapoint.title}</div>

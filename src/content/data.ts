@@ -7,6 +7,7 @@ export type mapDataPoint = {
   opacity?: number;
   outline?: number;
   outlineColor?: string;
+  icon?: string;
 };
 
 export type timelineDataPoint = mapDataPoint & { year: number };

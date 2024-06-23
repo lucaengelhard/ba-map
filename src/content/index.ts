@@ -9,7 +9,6 @@ import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
 import { dFuerstentuemer } from "./dFuerstetuemer";
 import { dDemography } from "./dDemography";
-import { pLivingArea } from "./paths/pArea";
 
 const topics: topic[] = [
   {
@@ -150,10 +149,6 @@ const topics: topic[] = [
         title: "Kurdische Fürstentümer",
         interactionData: dFuerstentuemer,
         interactionType: "filter",
-        background: pLivingArea,
-        backgroundColor: "blue",
-        backgroundOpacity: 1,
-        backgroundOutline: 1,
         small: true,
         content: [
           {
@@ -184,10 +179,6 @@ const topics: topic[] = [
         title: "Osmanisches Reich",
         interactionData: dOttoman,
         interactionType: "timeline",
-        background: pLivingArea,
-        backgroundColor: "blue",
-        backgroundOpacity: 1,
-        backgroundOutline: 1,
         content: [
           {
             type: "text",
@@ -246,10 +237,6 @@ const topics: topic[] = [
         title: "Erster Weltkrieg bis heute",
         interactionData: dWorldWarToday,
         interactionType: "timeline",
-        background: pLivingArea,
-        backgroundColor: "blue",
-        backgroundOpacity: 1,
-        backgroundOutline: 1,
         content: [
           {
             type: "text",
