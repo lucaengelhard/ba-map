@@ -9,6 +9,7 @@ import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
 import { dFuerstentuemer } from "./dFuerstetuemer";
 import { dDemography } from "./dDemography";
+import { dLinguistics } from "./dLinguistics";
 
 const topics: topic[] = [
   {
@@ -373,7 +374,7 @@ const topics: topic[] = [
           },
           {
             type: "text",
-            content: `Die Volksverteidigungseinheiten YPG/YPJ waren ein wichtige Kraft beim Kampf gegen den IS, da sie zuerst allein und dann als Teil der 2015 gegründeten Demokratischen Kräfte Syriens (SDF) gegen den IS kämpften.`,
+            content: `Die Volksverteidigungseinheiten YPG/YPJ waren eine wichtige Kraft beim Kampf gegen den IS, da sie zuerst allein und dann als Teil der 2015 gegründeten Demokratischen Kräfte Syriens (SDF) gegen den IS kämpften.`,
           },
           {
             type: "text",
@@ -417,8 +418,8 @@ const topics: topic[] = [
     chapters: [
       {
         title: "Lebensstandard",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dLinguistics,
+        interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
@@ -429,8 +430,8 @@ const topics: topic[] = [
       },
       {
         title: "Sprache",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dLinguistics,
+        interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
