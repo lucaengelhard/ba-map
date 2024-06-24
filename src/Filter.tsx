@@ -3,13 +3,11 @@ import { mapDataPoint } from "./content/data";
 import { SideBarGrid, SideBarGridElement } from "./Nav";
 import { GridSizeContext } from "./App";
 import { chapter } from "./content";
-import { isEven } from "./helpers";
 
 export default function Filter({
   onChange,
   options,
   selected,
-  currentChapter,
 }: {
   options: mapDataPoint[];
   onChange: (selected: number[]) => void;
@@ -29,8 +27,9 @@ export default function Filter({
   return (
     <div className="h-screen">
       <SideBarGrid cellWidth={gridSize}>
-        {options.map((option, index) => (
+        {options.map((option) => (
           <>
+            {/**
             {currentChapter.small ? (
               <>
                 {isEven(index) && (
@@ -41,8 +40,9 @@ export default function Filter({
                 )}
               </>
             ) : (
-              <div style={{ gridColumn: "1 / -1", gridRow: "span 1" }}></div>
-            )}
+              
+            )} */}
+            <div style={{ gridColumn: "1 / -1", gridRow: "span 1" }}></div>
             <SideBarGridElement
               key={option.id + option.title}
               className=""
@@ -51,14 +51,15 @@ export default function Filter({
               color={option.color ?? "grey"}
               onClick={() => onFilterClick(option.id)}
               gridColumn={
+                /**
                 currentChapter.small
                   ? isEven(index)
                     ? "2 / span 6"
                     : "9 / span 6"
-                  : undefined
+                  : */ undefined
               }
             >
-              <div className="text-3xl">{option.title}</div>
+              <div className="text-xl">{option.title}</div>
             </SideBarGridElement>
           </>
         ))}

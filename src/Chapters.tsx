@@ -21,9 +21,9 @@ export default function Chapters({
   }, [topic, chapterIndex]);
 
   return (
-    <main className="col-span-5 h-screen overflow-x-hidden relative">
+    <main className="grow h-screen overflow-x-hidden relative">
       <h1
-        className="text-main-600 text-3xl sticky top-0 bg-white  border border-main-300 flex items-center p-2 gap-4"
+        className="text-main-600 text-2xl sticky top-0 bg-white  border border-main-300 flex items-center p-2 gap-4"
         style={{
           height: gridSize * 4 + "px",
           paddingLeft: gridSize + "px",
