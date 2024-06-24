@@ -51,7 +51,7 @@ export default function Chapters({
 
 function Chapter({ chapter }: { chapter: chapter }) {
   return (
-    <div className="text-xl">
+    <div className="text-base">
       {chapter.content.map((block, bIndex) => (
         <ChapterContent key={bIndex} block={block} />
       ))}
@@ -73,7 +73,7 @@ function ChapterContent({ block }: { block: chapterContent }) {
 
   if (block.type === "quote") {
     return (
-      <div className="py-8 text-2xl">
+      <div className="py-8 text-xl">
         <div className="flex gap-4 items-center px-14 ">
           {" "}
           <Sonne fill="#E74322" className="w-[10%]" />

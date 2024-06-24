@@ -34,7 +34,7 @@ export const dWorldWarToday: timelineDataPoint[] = [
   {
     id: 5,
     title:
-      "Von kurdischer Seite beanspruchtes Gebiet gemäß einer zur ersten UN-Sitzung in San Francisco eingereichten Petition",
+      "Beanspruchtes Gebiet gemäß einer zur ersten UN-Sitzung eingereichten Petition",
     year: 1945,
     path: pSanFran,
     color: colors.main,
