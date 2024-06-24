@@ -124,7 +124,7 @@ const topics: topic[] = [
             type: "text",
           },
           {
-            title: "Islamisches Reich",
+            title: "Islamische Expansion",
             content: `630 erobert Mohammed Mekka und damit beginnen die Eroberungszüge auf der arabischen Halbinsel. 632 stirbt Mohammed, bis dahin ist die südliche und mittlere arabische Halbinsel schon erobert. Da das Oströmische Reich und das Neupersische Reich bis 629 einen langen Krieg geführt hatten und stark geschwächt waren war der arabisch-islamische Eroberungszug begünstigt. Außerdem waren für den Erfolg des Islams wesentlich mildere Besteuerung und anfänglich relativ große Toleranz für religiöse Minderheiten ausschlaggebend.`,
             type: "text",
           },

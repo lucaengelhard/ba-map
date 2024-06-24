@@ -1,6 +1,11 @@
 import { dedicatedAnimationDataPoint, timelineDataPoint } from "./data";
+import { pOriginSouth, pOriginWest } from "./paths";
 import {
   PersiaAlexanderTarget,
+  pIslamicExpansion,
+  pParthia120,
+  pParthiaOrigin,
+  pParthiaRome,
   pPersia539,
   pPersia547,
   pPersiaAlexanderBG,
@@ -11,7 +16,9 @@ import {
 
 const colorPersia = "#31572C";
 const colorAlexander = "#4F772D";
-const color3 = "#90A955";
+const colorParthia = "#90A955";
+const colorRome = "#bcdd6e";
+const colorIslamic = "#2ae819";
 
 export const dEmpires: Array<timelineDataPoint | dedicatedAnimationDataPoint> =
   [
@@ -50,8 +57,9 @@ export const dEmpires: Array<timelineDataPoint | dedicatedAnimationDataPoint> =
     {
       id: 4,
       opacity: 1,
+      /**
       outlineColor: "white",
-      outline: 10,
+      outline: 10, */
       color: colorAlexander,
       mask: pPersiaMask,
       title: "Eroberung des Persischen Reichs durch Alexander den Großen",
@@ -63,6 +71,67 @@ export const dEmpires: Array<timelineDataPoint | dedicatedAnimationDataPoint> =
         id: 5,
         title: "",
         path: PersiaAlexanderTarget,
+      },
+    },
+    {
+      id: 6,
+      year: -247,
+      title: "Gründung des Parthischen Reichs",
+      path: pParthiaOrigin,
+      color: colorParthia,
+      background: PersiaAlexanderTarget,
+      backgroundColor: colorAlexander,
+      target: {
+        id: 11,
+        title: "",
+        path: pParthiaOrigin,
+      },
+    },
+    /**
+    {
+      id: 7,
+      year: -155,
+      title: "",
+      path: pParthia155,
+      color: colorParthia,
+      background: PersiaAlexanderTarget,
+      backgroundColor: colorAlexander,
+    }, */
+    {
+      id: 8,
+      year: -120,
+      title: "Größte Ausdehnung des Parthischen Reichs",
+      path: pParthia120,
+      color: colorParthia,
+      background: PersiaAlexanderTarget,
+      backgroundColor: colorAlexander,
+    },
+    {
+      id: 9,
+      year: -100,
+      title: "Eroberungen des Römischen Reichs",
+      path: pOriginWest,
+      background: pParthia120,
+      backgroundColor: colorParthia,
+      color: colorRome,
+      target: {
+        id: 10,
+        title: "",
+        path: pParthiaRome,
+      },
+    },
+    {
+      id: 12,
+      year: 632,
+      title: "Islamische Expansion",
+      path: pOriginSouth,
+      background: pParthia120,
+      backgroundColor: colorParthia,
+      color: colorIslamic,
+      target: {
+        id: 13,
+        title: "",
+        path: pIslamicExpansion,
       },
     },
   ];
