@@ -417,13 +417,6 @@ const topics: topic[] = [
     id: 1,
     title: "Demografie",
     chapters: [
-      /**
-      {
-        title: "Lebensstandard",
-        interactionData: dLinguistics,
-        interactionType: "filter",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
-      }, */
       {
         title: "Bevölkerungsanteil",
         interactionData: dDemography,
@@ -434,7 +427,39 @@ const topics: topic[] = [
         title: "Sprache",
         interactionData: dLinguistics,
         interactionType: "filter",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
+        content: [
+          {
+            content:
+              "Eine einheitliche kurdische Standardsprache wie „Hochkurdisch“ gibt es nicht. Es gibt drei Hauptsprachen:",
+            type: "text",
+          },
+          {
+            content:
+              "Nordkurdisch, Kurmandschi wird von der Mehrheit gesprochen, da es in der Türkei und in Syrien am weitesten verbreitet ist.",
+            type: "text",
+          },
+          {
+            content:
+              "Zentralkurdisch, Sorani wird vor allem im irakischen Teil Kurdistans gesprochen, von Duhok und Erbil bis hin nach Sulejmani.",
+            type: "text",
+          },
+          {
+            content:
+              "Südkurdisch ist in drei Dialekte unterteilt: Zazaki, Gorani und Leki. Zazaki unterscheidet sich deutlich von den anderen und ist hauptsächlich in Kernkurdistan beheimatet, insbesondere in Dersim, Çabakçur und Malatya. Gorani ist die exotischste Sprache, die nur von etwa 500.000 Menschen im Iran und angrenzenden Irak gesprochen wird.",
+            type: "text",
+          },
+          {
+            content:
+              "Zusätzlich gibt es eine Vielzahl von Dialekten. Allgemein unterscheiden sich die Sprachen sprachwissenschaftlich und lautlich erheblich. Manchmal ähnelt sich das Gesprochene, aber manches unterscheidet sich so stark, dass sich Kurden untereinander nicht verstehen. Sprachwissenschaftlerinnen und Sprachwissenschaftler sind sich weitgehend uneinig, ob es sich bei der kurdischen Sprache um verschiedene Dialekte oder doch um mehrere, eng miteinander verwandte Sprachen handelt. Schätzungen zufolge sprechen weltweit 20 bis 30 Millionen Menschen Varianten des Kurdischen. Der Irak ist das einzige Land, in dem Kurdisch als Amtssprache gilt (neben Arabisch). In der autonomen Region Kurdistan (Irak) gilt Kurdisch als offizielle Sprache für Bildungsinstitutionen und Behörden. Dort wird hauptsächlich Soranî und Badînî (die irakische Variante von Kurmancî) gesprochen. ",
+            type: "text",
+          },
+          {
+            type: "text",
+            title: "Bedeutung von Sprache",
+            content:
+              "Durch die Aufspaltung und Repressionen gegenüber Kurd*innen konnte sich bisher keine einheitliche Nationalsprache oder ein einheitliches Schriftsystem bilden. Die Situation ist keine zufällige, sondern wurde bewusst von den herrschenden Machthabenden geschaffen. Kurd*innen wurden in ihren Herkunftsländern auf verschiedenste Weise politisch, sozial und ökonomisch ausgegrenzt. Die Sprache spielt hierbei eine zentrale Rolle und ist von enormer Wichtigkeit, um sich über gemeinsame Interessen und Positionen auszutauschen und sich dessen bewusst zu werden. Das Verbot der Muttersprache führte daher zu massiven Einschränkungen für die Volksgruppe, insbesondere hinsichtlich der Bildung. Außerdem wurde das Einfordern ihnen zustehender Rechte erschwert und somit die Unterdrückung vereinfacht. Um ein gleichberechtigtes Zusammenleben zu garantieren, ist die Weiterentwicklung der Sprache unerlässlich.",
+          },
+        ],
       },
       {
         title: "Religion",
@@ -455,10 +480,112 @@ const topics: topic[] = [
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
-        title: "Genozide",
+        title: "Genozide & Vertreibung",
         interactionData: dWorldWarToday,
         interactionType: "timeline",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
+        content: [
+          {
+            title: "Dersim Aufstand",
+            content:
+              "Die Militäroperationen in der Dersim-Region zwischen 1937 und 1938 sind das bekannteste und am intensivsten öffentlich diskutierte Beispiel für die staatlichen Repressionsmaßnahmen der Republik Türkei. Die türkische Regierung betrachtete die Bevölkerung in Dersim (heute Tunceli) als Bedrohung für das Projekt einer ethnisch homogenen Nation. Dersim wurde als rebellische, ungehorsame und widerspenstige Region eingestuft.",
+            type: "text",
+          },
+          {
+            content:
+              "Der Großteil der Bevölkerung in Dersim bestand aus Alevitinnen und Kurdinnen (zaza- und kurmandschi-sprechend). Mustafa Kemal Atatürk äußerte sich 1936 vor der Nationalversammlung folgendermaßen:",
+            type: "text",
+          },
+          {
+            title: "Mustafa Kemal (Atatürk)",
+            content:
+              "Das wichtigste Problem für unsere Innenpolitik ist das Problem von Dersim, und deshalb, um dieses Geschwür zu entwurzeln, das als Hindernis in unserem Weg steht, und um es zu erleichtern, schnelle Entscheidungen zu treffen, wäre es nötig, der Regierung absolute Vollmacht einzuräumen.",
+            type: "quote",
+          },
+          {
+            content:
+              "Als offizieller Beginn des vermeintlichen Aufstands in Dersim wird der 20. März 1937 angegeben. An diesem Tag wurden eine Brücke zerstört und die Telefonleitungen gekappt. Daraufhin folgte Beschuss durch die türkische Luftwaffe auf Seyit Rıza, der vom türkischen Staat als verantwortlicher Anführer der Ereignisse am 20. März und Hauptakteur hinter der staatsfeindlichen Stimmung in Dersim angesehen wurde. Zusätzlich wurden andere Orte bombardiert, um angebliche weitere Gefahren auszuschalten.",
+            type: "text",
+          },
+          {
+            content:
+              "Männer, Frauen und Kinder, auch diejenigen, die der jungen türkischen Republik positiv gegenüberstanden, wurden auf brutalste Weise abgeschlachtet. Die gesamte Stadt, die Wälder und Felder wurden niedergebrannt.",
+            type: "text",
+          },
+          {
+            content:
+              "Mein Vater hatte ein Fernglas. Die Soldaten trieben die Menschen vor sich her. Frauen, Kinder, Männer marschierten bis zum Ufer eines Bachs. Sie wurden am Abhang aufgereiht. Und die Soldaten begannen, auf sie zu schießen. In das Geknatter der Waffen mischten sich die Schreie der Menschen. Diese Klagerufe vergesse ich nie. Als die Schüsse verstummten, schrien und weinten immer noch welche. Dann zogen die Soldaten Bajonette auf, stachen auf die Überlebenden ein und riefen dabei Allah, Allah.",
+            title: "Mahmut Yıldız - Zeitzeuge",
+            type: "quote",
+          },
+          {
+            content:
+              "Heute heißt die Stadt offiziell Tunceli, da sie im Zuge der Assimilationspolitik umbenannt wurde. Wie viele Menschen beim Dersim-Massaker tatsächlich ihr Leben verloren haben, ist noch unklar. Die türkische Regierung gab offiziell 14.300 Ermordete zu. Hüseyin Aygün, Rechtsanwalt, Menschenrechtler und Abgeordneter der oppositionellen Republikanischen Volkspartei (CHP), kam aufgrund seiner Recherchen auf 40.000 bis 70.000 Ermordete. Weitere 12.500 Personen sollen in den Westen der Türkei deportiert worden sein.Bis heute lebt die Bevölkerung in Tunceli in Angst vor möglichen Auseinandersetzungen mit dem Militär, was die positive Entwicklung der Region hemmt.",
+            type: "text",
+          },
+          {
+            type: "text",
+            title: "Verschleppung aus Afrin",
+            content:
+              "Die Region Afrin in Syrien zählt zu den am stärksten von Kurden geprägten Gebieten des Landes. Zu Beginn des syrischen Bürgerkriegs zogen sich die pro-Assad Regierungstruppen aus Afrin zurück, woraufhin die Volksverteidigungseinheiten YPG/YPJ die Kontrolle übernahmen.",
+          },
+          {
+            content:
+              "Afrin galt als Hoffnung für den Aufbau einer demokratischen und sozialen Gesellschaft in der Kriegsregion und sollte eine selbstverwaltete kurdische Region sein.",
+            type: "text",
+          },
+          {
+            content:
+              "Am 20. Januar 2018 startete die Türkei die 'Operation Olivenzweig', um Afrin zu erobern, was zu einer systematischen demografischen Veränderung der Region führte. Die Türkei betrachtet die kurdische Selbstverwaltung als existentielle Bedrohung und begründete ihre Militäroffensive damit, dass die dort lebenden Kurdinnen unter der Verwaltung der YPG stehen, die als terroristische Organisation eingestuft wird. Ziel der Türkei ist es, die kurdische Autonomie in Afrin zu unterdrücken, indem sie Kurdinnen vertreibt und andere Bevölkerungsgruppen ansiedelt.",
+            type: "text",
+          },
+          {
+            content:
+              "Die Zivilbevölkerung im von der Türkei besetzten Nordsyrien leidet unter schweren Menschenrechtsverletzungen, darunter gezielte Tötungen, Plünderungen, Entführungen, Folter, Vergewaltigungen, unrechtmäßige Verhaftungen und sexuelle Versklavung. Zusätzlich wird die kurdische Sprache sowohl in Schulen als auch im privaten Gebrauch verboten. Es kam zu Verletzungen von Wohn-, Land- und Eigentumsrechten sowie illegalen Aneignungen von Eigentum. Die Zivilbevölkerung im von der Türkei besetzten Nordsyrien leidet enorm unter den Gräueltaten. Der Anteil der Kurden sei von schätzungsweise 90 Prozent auf 35 gesunken und mindestens 300.000 Kurd*innen befinden sich derzeit auf der Flucht.",
+            type: "text",
+          },
+          {
+            content:
+              "Völkerrechtsexperten sind sich einig, dass der bewaffnete Angriff der türkischen Armee auf die syrisch-kurdische Region Afrin ein völkerrechtswidriges Vergehen darstellt. Die internationale Gemeinschaft, einschließlich Deutschland, verurteilt dieses Vorgehen stark. Afrin wird mittlerweile von verschiedenen militärischen syrischen und türkischen Fraktionen kontrolliert, die das Gebiet in kleinere Teile aufgeteilt haben. Zusammenstöße zwischen diesen Fraktionen gehören zum täglichen Leben der Zivilisten, die die größten Leidtragenden sind.",
+            type: "text",
+          },
+          {
+            title: "Anfal-Operation",
+            content:
+              "Die Anfal-Operation gilt als eines der größten Menschheitsverbrechen nach dem Zweiten Weltkrieg. Nach Beginn des ersten Golfkriegs zwischen dem Iran und dem Irak 1980 verordnete Husseins Cousin Ali Majid die 'Anfal-Operation'. Im Rahmen dieser Operation wurde die kurdische Stadt Halabja im Nordirak angegriffen und bombardiert. Der grausame Höhepunkt ereignete sich zwischen Februar und September, als das irakische Militär chemische Waffen gegen die kurdische Zivilbevölkerung einsetzte. Durch den trügerischen Geruch der chemischen Zusammensetzung, die nach „süßem Apfel“ roch, wurde die Bevölkerung in eine tödliche Falle gelockt.",
+            type: "text",
+          },
+          {
+            content:
+              "Das Ziel war die endgültige Auslöschung der Kurdinnen, die Arabisierung des von Kurdinnen bevölkerten Nordens des Iraks sowie die Zerstörung der landwirtschaftlichen Existenzgrundlagen der Kurden. Infolge der von Ali Hassan al-Madschid ausgerufenen Militärkampagne wurden 4500 kurdische Dörfer zerstört und schätzungsweise 180.000 bis 200.000 Menschen getötet. Die Auswirkungen des grausamen Genozids sind bis zum heutigen Tag spürbar. Durch den Giftgasangriff haben die Menschen bis heute mit gesundheitlichen Folgen wie Erblindung, Fehlgeburten und Gendefekten zu kämpfen. Dieses Massaker ist ein Beispiel für das brutale Vorgehen der irakischen Regierung gegen die Kurd*innen.",
+            type: "text",
+          },
+          {
+            title: "Sindschar-Genozid",
+            content:
+              "Das Yezidentum ist eine Religion, deren Wurzeln bis etwa 2000 v. Chr. zurückreichen. Weltweit gehören etwa eine Million Menschen dem Yezidentum an. Yeziden leben hauptsächlich in kurdischen Siedlungsgebieten, vor allem in der nordirakischen Provinz Ninive. Die Mehrheit der Yeziden sind Kurden und sprechen Kurmanci. Im Gegensatz zu anderen Religionen wie dem Islam und dem Christentum gibt es im Yezidentum keine verbindliche religiöse Schrift wie die Bibel. Dies führt dazu, dass Yeziden von Angehörigen anderer Religionen oft als „Ungläubige“ bezeichnet werden.",
+            type: "text",
+          },
+          {
+            content:
+              "Mit dem Einmarsch des sogenannten Islamischen Staats (IS) in das yezidische Gebiet Sindschar am 3. August 2014 ereignete sich ein brutaler Genozid. Die Yeziden wurden auf grausame Weise getötet, es gab Massenerschießungen, ihre Städte wurden niedergebrannt, und Frauen und Kinder wurden als Sexsklaven verschleppt. Viele versuchten in die Berge zu flüchten, wobei zahlreiche Menschen an Hunger und Durst starben. Bis heute befinden sich über 3.000 Yeziden, vor allem Frauen und Kinder, in IS-Gefangenschaft. Eine UN-Studie aus dem Jahr 2017 berichtet von mehr als 3.000 Getöteten und über 6.000 Entführten.",
+            type: "text",
+          },
+          {
+            content:
+              "Mit dem Einmarsch des sogenannten Islamischen Staats (IS) in das yezidische Gebiet Sindschar am 3. August 2014 ereignete sich ein brutaler Genozid. Die Yeziden wurden auf grausame Weise getötet, es gab Massenerschießungen, ihre Städte wurden niedergebrannt, und Frauen und Kinder wurden als Sexsklaven verschleppt. Viele versuchten in die Berge zu flüchten, wobei zahlreiche Menschen an Hunger und Durst starben. Bis heute befinden sich über 3.000 Yeziden, vor allem Frauen und Kinder, in IS-Gefangenschaft. Eine UN-Studie aus dem Jahr 2017 berichtet von mehr als 3.000 Getöteten und über 6.000 Entführten.",
+            type: "text",
+          },
+          {
+            content:
+              "Die Yeziden waren völlig auf sich allein gestellt. Weder westliche Mächte noch die kurdische Regionalregierung im Nordirak kamen ihnen zu Hilfe. Peschmerga-Einheiten, die zum Schutz der zivilen Bevölkerung in Sindschar stationiert waren, zogen sich im Zuge des IS-Überfalls unvermittelt zurück und weigerten sich, den Yeziden Waffen zur Selbstverteidigung zu überlassen. Die einzigen Verbündeten waren Mitglieder der kurdischen Volksverteidigungseinheit YPG aus Nordsyrien, die zum Schutz der Yeziden nach Sindschar kamen und den IS aus den Gebieten zurückdrängen konnten.",
+            type: "text",
+          },
+          {
+            content:
+              "Bis heute leidet die Bevölkerung Sindschars aus Angst, der IS könnte wieder in das Gebiet eindringen. Da kein sicherer Schutz gewährleistet werden kann und aufgrund der katastrophalen humanitären Lage haben die Menschen dort keine Zukunftsperspektive, weshalb die Mehrheit auswandern will.",
+            type: "text",
+          },
+        ],
       },
       {
         title: "Widerstand",

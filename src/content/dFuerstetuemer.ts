@@ -108,6 +108,6 @@ export const dFuerstentuemerColor = dFuerstentuemer.map((entry, index) => {
     ...entry,
     color: colorScale[index],
     outline: 2,
-    outlineColor: chroma(colorScale[index]).darken(2),
+    outlineColor: chroma(colorScale[index]).darken(2).hex(),
   };
 });
