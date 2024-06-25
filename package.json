@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chroma-js": "^2.4.2",
     "clsx": "^2.1.1",
     "flubber": "^0.4.2",
     "lucide-react": "^0.394.0",
@@ -19,6 +20,7 @@
     "react-new-window": "^1.0.1"
   },
   "devDependencies": {
+    "@types/chroma-js": "^2.4.4",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

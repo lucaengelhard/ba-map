@@ -13,97 +13,101 @@ import {
   pTasini,
 } from "./paths/pFuerstentuemer";
 
-const colorFuerstentuemer = "#e74322";
+import chroma from "chroma-js";
 
 export const dFuerstentuemer: mapDataPoint[] = [
   {
     id: 0,
-    color: colorFuerstentuemer,
-    outline: 3,
+
     opacity: 1,
-    outlineColor: "#c12020",
+
     title: "Baban",
     path: pBaban,
   },
   {
     id: 1,
-    color: colorFuerstentuemer,
+
     outline: 3,
     opacity: 1,
-    outlineColor: "#c12020",
     title: "Bayazid",
     path: pBayazid,
   },
   {
     id: 2,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Bitlis",
     path: pBitlis,
   },
   {
     id: 3,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Bokhti",
     path: pBokhti,
   },
   {
     id: 4,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Dozhik",
     path: pDozhik,
   },
   {
     id: 5,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Hakkari",
     path: pHakkari,
   },
   {
     id: 6,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Jelali",
     path: pJelali,
   },
   {
     id: 7,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Milan",
     path: pMilan,
   },
   {
     id: 8,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Soran",
     path: pSoran,
   },
   {
     id: 9,
-    color: colorFuerstentuemer,
+
     opacity: 1,
-    outline: 3,
-    outlineColor: "#c12020",
+
     title: "Tasini",
     path: pTasini,
   },
 ];
+
+const colorScale = chroma
+  .scale(["#e74322", "#6122e8"])
+  .mode("lch")
+  .colors(dFuerstentuemer.length);
+
+export const dFuerstentuemerColor = dFuerstentuemer.map((entry, index) => {
+  return {
+    ...entry,
+    color: colorScale[index],
+    outline: 2,
+    outlineColor: chroma(colorScale[index]).darken(2),
+  };
+});

@@ -7,9 +7,10 @@ import { dOrigin } from "./dOrigin";
 import { dWorldWarToday } from "./dWorldWarToday";
 import { dToday } from "./dToday";
 import { dEmpires } from "./dEmpires";
-import { dFuerstentuemer } from "./dFuerstetuemer";
+import { dFuerstentuemerColor } from "./dFuerstetuemer";
 import { dDemography } from "./dDemography";
 import { dLinguistics } from "./dLinguistics";
+import { dReligionColor } from "./dReligion";
 
 const topics: topic[] = [
   {
@@ -148,7 +149,7 @@ const topics: topic[] = [
       },
       {
         title: "Kurdische Fürstentümer",
-        interactionData: dFuerstentuemer,
+        interactionData: dFuerstentuemerColor,
         interactionType: "filter",
         small: true,
         content: [
@@ -437,8 +438,8 @@ const topics: topic[] = [
       },
       {
         title: "Religion",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dReligionColor,
+        interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
     ],
