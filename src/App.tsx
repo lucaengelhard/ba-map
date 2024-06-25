@@ -48,12 +48,14 @@ function App() {
     }
   }
 
+  const gridSize = 32;
+
   return (
     <>
-      <GridSizeContext.Provider value={40}>
+      <GridSizeContext.Provider value={gridSize}>
         <div
           ref={mainUi}
-          className="grid grid-cols-12 text-black w-screen h-screen overflow-hidden select-none"
+          className="flex text-sm text-black w-screen h-screen overflow-hidden select-none"
         >
           <Nav
             onChange={onChapterChange}
@@ -61,7 +63,10 @@ function App() {
             currentTopic={currentTopic}
           />
           <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
-          <aside className="col-span-4">
+          <aside
+            className="grow-0 shrink-0"
+            style={{ width: gridSize * 14 + "px" }}
+          >
             {currentChapter.interactionType === "timeline" ? (
               <TimeSlider
                 options={currentChapter.interactionData}

@@ -100,6 +100,7 @@ export default function Map({
           right: "6rem",
           width: "23.5rem",
           height: "13.5rem",
+          backgroundColor: "white",
         }}
       >
         <ContextMap className="w-full h-full" />

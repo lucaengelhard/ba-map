@@ -145,7 +145,7 @@ export default function TimeSlider({
         {calcOptions.map((option, index) => (
           <SideBarGridElement
             key={index}
-            gridColumn="4 / -1"
+            gridColumn="4 / -2"
             className="flex gap-4 items-start"
             selected={option.id === selected}
             span={option.span}
@@ -167,7 +167,7 @@ export default function TimeSlider({
           <div className="h-full"></div>
           <div
             ref={sliderRef}
-            className="w-full sticky top-3 bottom-3 rounded-full p-2 bg-white"
+            className="w-full sticky top-3 bottom-3 rounded-full p-1 bg-white"
           >
             <div className="relative">
               {selected !== 0 && (
@@ -189,7 +189,7 @@ export default function TimeSlider({
             gridRow: `1 / span ${rows - 1}`,
             boxSizing: "border-box",
           }}
-          className="bg-main-600 rounded-full border-[15px] border-white"
+          className="bg-main-600 rounded-full border-[14px] border-white"
         ></div>
       </SideBarGrid>
     </>

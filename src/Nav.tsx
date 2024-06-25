@@ -23,14 +23,18 @@ export default function Nav({
   const gridSize = useContext(GridSizeContext);
 
   return (
-    <nav className="col-span-3" key={"NavContainer"}>
+    <nav
+      className="grow-0 shrink-0"
+      style={{ width: gridSize * 10 + "px" }}
+      key={"NavContainer"}
+    >
       <SideBarGrid cellWidth={gridSize}>
         <div style={{ gridColumn: "2 / -2", gridRow: "span 1" }}></div>
         {topicList.topics.map((topic) => (
           <>
             <SideBarGridElement
               span={3}
-              className="text-3xl font-bold"
+              className="text-2xl font-bold"
               children={topic.title}
               onClick={() => onChange(topic.id, 0)}
               selected={currentTopic.id === topic.id}
@@ -50,7 +54,7 @@ export default function Nav({
                   }
                   span={2}
                   key={topic.id + topic.title + cIndex + chapter.title}
-                  className="text-2xl"
+                  className="text-xl"
                 />
               ))}
             <div

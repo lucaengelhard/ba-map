@@ -416,12 +416,13 @@ const topics: topic[] = [
     id: 1,
     title: "Demografie",
     chapters: [
+      /**
       {
         title: "Lebensstandard",
         interactionData: dLinguistics,
         interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
-      },
+      }, */
       {
         title: "Bevölkerungsanteil",
         interactionData: dDemography,
