@@ -3,16 +3,19 @@ import { mapDataPoint } from "./content/data";
 import { SideBarGrid, SideBarGridElement } from "./Nav";
 import { GridSizeContext } from "./App";
 import { chapter } from "./content";
+import { MissingSidebar } from "./TimeSlider";
 
 export default function Filter({
   onChange,
   options,
   selected,
+  missing,
 }: {
   options: mapDataPoint[];
   onChange: (selected: number[]) => void;
   selected: number[];
   currentChapter: chapter;
+  missing?: boolean;
 }) {
   const gridSize = useContext(GridSizeContext);
 
@@ -26,6 +29,7 @@ export default function Filter({
 
   return (
     <div className="h-screen">
+      {missing && <MissingSidebar />}
       <SideBarGrid cellWidth={gridSize}>
         {options.map((option) => (
           <>

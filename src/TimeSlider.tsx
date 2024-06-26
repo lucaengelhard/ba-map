@@ -8,9 +8,11 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 export default function TimeSlider({
   options,
   onChange,
+  missing,
 }: {
   options: timelineDataPoint[];
   onChange: (selected: number) => void;
+  missing?: boolean;
 }) {
   const gridSize = useContext(GridSizeContext);
   const [selected, setSelected] = useState(0);
@@ -140,6 +142,7 @@ export default function TimeSlider({
 
   return (
     <>
+      {missing && <MissingSidebar />}
       <SideBarGrid cellWidth={gridSize} onGridChange={onGridChange}>
         <div style={{ gridColumn: "4 / -2", gridRow: "span 1" }}></div>
         {calcOptions.map((option, index) => (
@@ -193,5 +196,11 @@ export default function TimeSlider({
         ></div>
       </SideBarGrid>
     </>
+  );
+}
+
+export function MissingSidebar() {
+  return (
+    <div className="bg-main-600 opacity-70 w-full h-screen absolute z-50"></div>
   );
 }

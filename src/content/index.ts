@@ -11,6 +11,8 @@ import { dFuerstentuemerColor } from "./dFuerstetuemer";
 import { dDemography } from "./dDemography";
 import { dLinguistics } from "./dLinguistics";
 import { dReligionColor } from "./dReligion";
+import { dPlaceholder } from "./dPlaceholder";
+import { dGenocide } from "./dGenocide";
 
 const topics: topic[] = [
   {
@@ -421,7 +423,60 @@ const topics: topic[] = [
         title: "Bevölkerungsanteil",
         interactionData: dDemography,
         interactionType: "filter",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
+        content: [
+          {
+            content:
+              "Die Ermittlung der kurdischen Demografie gestaltet sich als sehr schwierig und ungenau, da es keine exakten Angaben zur Anzahl der Kurden gibt, sondern meist nur Schätzungen vorliegen. Der Grund dafür ist, dass die kurdische Ethnie bei Volkszählungen meist nicht berücksichtigt wird.",
+            type: "text",
+          },
+          {
+            title: "Siedlungsgebiet",
+            content:
+              "Mit etwa 18 bis 20 Millionen Kurden stellt die Türkei die größte kurdische Bevölkerung weltweit. Die Kurden in der Türkei konzentrieren sich hauptsächlich im Südosten des Landes, einer Region, die historisch und kulturell stark von kurdischer Identität geprägt ist.",
+            type: "text",
+          },
+          {
+            content:
+              "Im Iran leben etwa 8 bis 10 Millionen Kurden. Sie sind vor allem in der westlichen Provinz Kordestan sowie in den benachbarten Provinzen Kermanshah und West-Aserbaidschan ansässig.",
+            type: "text",
+          },
+          {
+            content:
+              "Die irakischen Kurden zählen etwa 4,5 bis 5,5 Millionen Menschen. Der Großteil von ihnen lebt in der Autonomen Region Kurdistan im Norden des Landes, die über eine gewisse Selbstverwaltung verfügt.",
+            type: "text",
+          },
+          {
+            content:
+              "In Syrien leben etwa 1,5 bis 2,5 Millionen Kurden. Sie sind hauptsächlich im Nordosten und in der Region um Aleppo angesiedelt.",
+            type: "text",
+          },
+          {
+            title: "Diaspora",
+            content:
+              "Die politische Instabilität, Verfolgung und wirtschaftlichen Schwierigkeiten in ihren Heimatländern haben viele Kurden dazu gezwungen, in andere Teile der Welt zu migrieren.",
+            type: "text",
+          },
+          {
+            content:
+              "Etwa 1 Million Kurden lebt heute in Westeuropa, insbesondere in Deutschland, Frankreich, Schweden und den Niederlanden. Diese Migration begann in den 1960er Jahren und setzte sich aufgrund von Konflikten und wirtschaftlichen Problemen fort.",
+            type: "text",
+          },
+          {
+            content:
+              "Rund 420.000 Kurden leben in den Staaten der ehemaligen Sowjetunion. Die Mehrheit von ihnen befindet sich in Armenien, Aserbaidschan und Russland. Der Libanon beherbergt etwa 200.000 Kurden. Viele von ihnen sind Nachkommen von Migranten, die im frühen 20. Jahrhundert vor Konflikten in ihren Heimatländern flohen.",
+            type: "text",
+          },
+          {
+            content:
+              "Golfstaaten, Libyen, Jordanien, Ägypten, Israel: In diesen Ländern leben insgesamt etwa 350.000 Kurden. Sie migrierten hauptsächlich aus wirtschaftlichen Gründen oder aufgrund politischer Verfolgung. USA, Kanada, Australien, Pakistan, Indien: In diesen Ländern leben zusammen etwa 16.000 bis 20.000 Kurden. Die Migration in diese Länder ist relativ neu und oft das Ergebnis von Flucht vor politischer Verfolgung oder der Suche nach besseren wirtschaftlichen Chancen.",
+            type: "text",
+          },
+          {
+            content:
+              "Die weitreichende Verteilung des kurdischen Volkes ist die Folge verschiedener  Faktoren wie politische Verfolgung, Konflikte und Kriege, Mangelnde wirtschaftliche Entwicklung und Arbeitsmöglichkeiten, Assimilationspolitik und Suche nach Sicherheit und besseren Lebensbedingungen. Insgesamt spiegelt die demografische Verteilung des kurdischen Volkes eine Geschichte von Widerstand und Anpassung wider. Trotz aller Herausforderungen haben die Kurden ihre kulturelle Identität bewahrt und sich weltweit verteilt, wobei sie sowohl in ihren Heimatländern als auch in der Diaspora beständig um Anerkennung und Rechte kämpfen.",
+            type: "text",
+          },
+        ],
       },
       {
         title: "Sprache",
@@ -475,14 +530,15 @@ const topics: topic[] = [
     chapters: [
       {
         title: "Verbote",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dPlaceholder,
+        missing: true,
+        interactionType: "filter",
         content: [{ title: "Überschrift", content: "", type: "text" }],
       },
       {
         title: "Genozide & Vertreibung",
-        interactionData: dWorldWarToday,
-        interactionType: "timeline",
+        interactionData: dGenocide,
+        interactionType: "filter",
         content: [
           {
             title: "Dersim Aufstand",
@@ -589,9 +645,28 @@ const topics: topic[] = [
       },
       {
         title: "Widerstand",
-        interactionData: dWorldWarToday,
+        interactionData: dPlaceholder,
         interactionType: "timeline",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
+        missing: true,
+        content: [
+          {
+            title: "Türkei",
+            content:
+              "In den letzten 100 Jahren hat der türkische Staat alles daran gesetzt, die kurdische Identität auszulöschen. Es fanden Umsiedlungsmaßnahmen und Deportationen statt, durch die viele Kurden ihr Zuhause verloren. Im Zuge der Türkifizierung wurden die Namen von Dörfern und Städten geändert. Bestimmte Buchstaben wie q, x oder w, die im türkischen Alphabet nicht existieren, wurden von der türkischen Regierung verboten. Kurdischer Unterricht ist an staatlichen Schulen laut Verfassung verboten. Bis ins Jahr 2002 waren kurdischsprachige Fernseh- und Radiosendungen nicht gestattet. Auch kurdische Namen wurden streng verboten.",
+            type: "text",
+          },
+          {
+            title: "Stellungnahme von Kurden über die Situation 1937",
+            content:
+              "Die kurdischen Schulen sind geschlossen, die kurdische Sprache ist verboten. Die Wörter Kurde und Kurdistan sind aus den wissenschaftlichen Büchern entfernt worden, jede bestialische Art wird angewendet, um die Kurden einschließlich Frauen und Mädchen zur Zwangsarbeit nach Anatolien zu bringen. Die Kurden werden in türkische Gebiete umgesiedelt, sie sollen nirgendwo mehr als 5 % ausmachen.",
+            type: "quote",
+          },
+          {
+            content:
+              "Trotz dieser und weiterer Einschränkungen, wie Demonstrations- und Parteiverboten, leisteten Kurd*innen ",
+            type: "text",
+          },
+        ],
       },
     ],
   },
@@ -611,6 +686,7 @@ type chapterBase = {
   backgroundOpacity?: number;
   backgroundOutline?: number;
   small?: boolean;
+  missing?: boolean;
 };
 
 type filterChapter = chapterBase & {

@@ -64,13 +64,14 @@ function App() {
           />
           <Chapters topic={currentTopic} chapterIndex={currentChapterIndex} />
           <aside
-            className="grow-0 shrink-0"
+            className="grow-0 shrink-0 relative"
             style={{ width: gridSize * 14 + "px" }}
           >
             {currentChapter.interactionType === "timeline" ? (
               <TimeSlider
                 options={currentChapter.interactionData}
                 onChange={onSliderChange}
+                missing={currentChapter.missing}
               />
             ) : (
               <Filter
@@ -80,6 +81,7 @@ function App() {
                   currentTopic.chapters[currentChapterIndex].interactionData
                 }
                 currentChapter={currentChapter}
+                missing={currentChapter.missing}
               />
             )}
           </aside>
