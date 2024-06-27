@@ -520,7 +520,29 @@ const topics: topic[] = [
         title: "Religion",
         interactionData: dReligionColor,
         interactionType: "filter",
-        content: [{ title: "Überschrift", content: "", type: "text" }],
+        content: [
+          {
+            content:
+              "Vor der Isalmischen Expansion im 7. Jh. ist die Hauptreligion der Kurd*innen (und auch der Perser*innen) der von Zarathustra gegründete Zoroastrismus und später auch das Christentum. Der Zoroastrismus war eine frühe Monotheistische Religion, die Auswirkungen auf das Entstehen von Juden- und Christentum hatte.",
+            type: "text",
+          },
+          {
+            content:
+              "Heute ist der übermäßige Großteil der Kurd*innen muslimisch geprägt, aber nicht ausschließlich. Einige Kurd*innen sind Aleviten, Yarsaniten und Jesiden. Es gibt auch kleinere Jüdische und Christliche Gruppierungen.",
+            type: "text",
+          },
+          {
+            content:
+              "Kurd*innen, vor allem kurdische Moslems, sind dafür bekannt, vergleichsweise tolerant gegenüber anderen Religionen zu sein. Auf Grund der Unterdrückungs- und Assimilierungsgeschichte der Kurd*innen ist das Bewusstsein dafür sehr groß.",
+            type: "text",
+          },
+          {
+            title: "The Kurdish Project",
+            content:
+              "Sowohl ihr Leid als auch ihre reiche Geschichte haben die Kurden gegenüber anderen Religionen besonders aufgeschlossen gemacht. Das kurdische Volk sind keine Araber, sondern identifiziert sich historisch mit den Medern, einem alten Volk, das in der Bibel beschrieben wird. Tatsächlich waren die meisten Kurden schon lange vor ihrem Übertritt zum Islam im 6. Jahrhundert Christen.",
+            type: "quote",
+          },
+        ],
       },
     ],
   },
